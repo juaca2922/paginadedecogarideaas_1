@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block title %}Cotizar - Decogarideas{% endblock %}
+
+{% block page_title %}¡Cotiza tu Producto!{% endblock %}
+
+{% block content %}
+<div class="form-group">
+    <label for="producto">Producto</label>
+    <select class="form-control" id="producto" name="producto" onchange="mostrarOpciones()" required>
+        <option value="">Selecciona un producto</option>
+        <option value="Maceta personalizada">Maceta personalizada</option>
+        <option value="Caja de regalo">Caja de regalo</option>
+        <option value="Set de recuerdos">Set de recuerdos</option>
+    </select>
+</div>
+
+<!-- Opciones adicionales para Maceta personalizada -->
+<div id="maceta-options" style="display: none;">
+    <div class="form-group">
+        <label for="tipo_maceta">Tipo de Maceta</label>
+        <select class="form-control" id="tipo_maceta" name="tipo_maceta" onchange="calcularPrecio()">
+            <option value="">Selecciona el tipo de maceta</option>
+            <option value="Maceta">Maceta</option>
+            <option value="Maceta con yute">Maceta con yute</option>
+            <option value="Maceta con caja">Maceta con caja</option>
+            <option value="Maceta con sticker">Maceta con sticker</option>
+            <!-- Nueva opción añadida -->
+            <option value="Maceta con girasol">Maceta con girasol</option>
+        </select>
+    </div>
+</div>
+
+<!-- Cuando elijan un tipo de maceta -->
+<div id="cantidad-container" class="form-group" style="display: none;">
+    <label for="cantidad">Cantidad</label>
+    <input type="number" class="form-control" id="cantidad" name="cantidad" min="1" oninput="calcularPrecio()" required>
+</div>
+
+<!-- Precio total -->
+<div id="precio-total" style="display: none;">
+    <p><strong>Precio Total: $<span id="total-price">0</span></strong></p>
+</div>
+
+<!-- Botón para enviar -->
+<button type="submit" class="btn btn-primary">Solicitar Cotización</button>
+
+<script>
+    // Precios base de las macetas por unidad
+    const preciosMacetas = {
+        "Maceta": { "base": 10, "25-50": 4.8, "50-100": 4.2 , "100+": 4 },
+        "Maceta con yute": { "base": 10, "25-50": 9, "50-100": 8, "100+": 7 },
+        "Maceta con caja": { "base": 15, "25-50": 14, "50-100": 12, "100+": 10 },
+        "Maceta con sticker": { "base": 12, "25-50": 11, "50-100": 9, "100+": 8 },
+        "Maceta con girasol": { "base": 20, "25-50": 18, "50-100": 16, "100+": 14 }
+    };
+
+    function mostrarOpciones() {
+        var productoSeleccionado = document.getElementById('producto').value;
+        var macetaOptions = document.getElementById('maceta-options');
+        var cantidadContainer = document.getElementById('cantidad-container');
+        var precioTotal = document.getElementById('precio-total');
+
+        // Si el producto seleccionado es "Maceta personalizada", muestra las opciones adicionales
+        if (productoSeleccionado == "Maceta personalizada") {
+            macetaOptions.style.display = 'block';
+            cantidadContainer.style.display = 'none';  // Ocultar el campo de cantidad al principio
+            precioTotal.style.display = 'none'; // Ocultar el precio total al principio
+        } else {
+            macetaOptions.style.display = 'none';
+            cantidadContainer.style.display = 'none';
+            precioTotal.style.display = 'none';
+        }
+    }
+
+    function calcularPrecio() {
+        var tipoMaceta = document.getElementById('tipo_maceta').value;
+        var cantidad = document.getElementById('cantidad').value;
+        var precioTotal = document.getElementById('total-price');
+        var precioMaceta = preciosMacetas[tipoMaceta];
+
+        // Muestra el campo de cantidad solo si el tipo de maceta está seleccionado
+        if (tipoMaceta) {
+            // Mostrar el campo de cantidad solo si el tipo de maceta está seleccionado
+            document.getElementById('cantidad-container').style.display = 'block';
+        } else {
+            document.getElementById('cantidad-container').style.display = 'none';
+        }
+
+        // Solo muestra el precio si hay un tipo de maceta seleccionado y una cantidad ingresada}
+        if (tipoMaceta && cantidad > 0) {
+            let precioUnitario;
+
+            // Lógica para determinar el precio según la cantidad
+            if (cantidad >= 100) {
+                precioUnitario = precioMaceta["100+"];
+            } else if (cantidad >= 50) {
+                precioUnitario = precioMaceta["50-100"];
+            } else if (cantidad >= 25) {
+                precioUnitario = precioMaceta["25-50"];
+            } else {
+                precioUnitario = precioMaceta["base"];
+            }
+
+            // Calcular el total
+            var total = precioUnitario * cantidad;
+
+            // Mostrar el precio total con dos decimales y añadir el texto "S/ "
+        precioTotal.innerText = `S/ ${total.toFixed(2)}`; // Cambio aquí: Agregado "S/" antes del precio
+        document.getElementById('precio-total').style.display = 'block';  // Muestra el precio total
+    } else {
+        document.getElementById('precio-total').style.display = 'none';  // Oculta el precio total si no hay selección
+    }
+}
+</script>
+{% endblock %}
+

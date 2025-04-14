@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #D2B48C; /* Beige oscuro */
+    color: #333;
+    text-align: center;
+    padding-top: 50px;
+    margin: 0;
+}
+
+.container {
+    background: white;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 60%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1 {
+    color: black; /* Título en negro */
+    font-size: 40px; /* Tamaño del título */
+}

@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Mi primera página Flask</title>
-</head>
-<body>
-    <h1>¡Hola desde Flask en PyCharm!</h1>
-    <p>Probando mi primera app con Flask.</p>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Página de Inicio{% endblock %}
+{% block content %}
+    <h1>Bienvenido </h1>
+{% endblock %}
+
