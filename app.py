@@ -10,5 +10,5 @@ def home():
 if __name__ == "__main__":
     # Obtiene el puerto asignado por Render, si no existe usa el puerto 5000 por defecto
     port = int(os.environ.get("PORT", 5000))
-
     # Ejecuta el servidor en 0.0.0.0 para
+    app.run(host="0.0.0.0", port=port)
