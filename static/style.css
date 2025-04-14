@@ -20,3 +20,16 @@ h1 {
     color: black; /* Título en negro */
     font-size: 40px; /* Tamaño del título */
 }
+
+p {
+    margin: 0;  /* Elimina el margen extra entre los párrafos */
+    padding: 0; /* Elimina el padding extra */
+    line-height: 1; /* Ajusta el interlineado */
+}
+
+/* ✅ Ajuste específico solo para los párrafos del texto copiable */
+#texto-copiable p {
+    margin: 0;
+    padding: 0;
+    line-height: 1; /* Puedes ajustar a 1.2, 1.4 o lo que te parezca mejor */
+}

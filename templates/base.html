@@ -1,78 +1,189 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
-    <title>{% block tittle %}{% endblock %}</title>
+    <title>{% block tittle %}Decogarideas{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<!-- ✅ NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-        <!-- ✅ MODIFICACIÓN: Renombrado del dropdown y funcionalidad -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Respuestas para las Preguntas del cliente
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Hola,¿Sigue disponible?</a>
-          <a class="dropdown-item" href="#">Precio de los recuerdos por favo</a>
-          <a class="dropdown-item" href="{{ url_for('cotizar') }}">Desea cotizar </a>
-          <a class="dropdown-item" href="#"onclick="mostrarUbicacion()">¿Dónde te encuentras ubicado?</a>
-          <a class="dropdown-item" href="#">¿Se paga contra entrega?</a>
-          <a class="dropdown-item" href="#">Desea cotizar el delivery</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Modelos (links) </a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-      <!-- Formulario de búsqueda -->
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
+<!-- ✅ NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Decogarideas</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Inicio <span class="sr-only">(actual)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Respuestas Rápidas
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#" onclick="mostrarRespuestalsaludo()">Hola, ¿Sigue disponible?</a>
+                    <a class="dropdown-item" href="#" onclick="mostrarPrecio()">Precio de los recuerdos por favor</a>
+                    <a class="dropdown-item" href="{{ url_for('cotizar') }}">Desea cotizar</a>
+                    <a class="dropdown-item" href="#" onclick="mostrarUbicacion()">¿Dónde te encuentras ubicado?</a>
+                    <a class="dropdown-item" href="#" onclick="mostrarPago()">¿Se paga contra entrega?</a>
+                    <a class="dropdown-item" href="#" onclick="mostrarDelivery()">Desea cotizar el delivery</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" onclick="mostrarModelos()">Modelos (links)</a>
+                </div>
+            </li>
+        </ul>
+    </div>
 </nav>
 
-    <h1>Decogarideas website </h1>
-   <!-- Contenido principal -->
-    <div class="container mt-4">
-        {% block content %} <!-- Este bloque es donde se inserta el contenido específico de cada página -->
-        {% endblock %}
-    </div>
-<!-- ✅ NUEVO CONTENIDO MOSTRADO AL CLICKEAR -->
-<div id="ubicacion-texto" class="container mt-4" style="display: none;">
-    <div class="alert alert-info">
-        Estamos ubicados en Av. Principal #123, Ciudad Ejemplo. ¡Te esperamos!
-    </div>
+<!-- ✅ CONTENIDO PRINCIPAL -->
+<div class="container mt-4">
+    {% block content %}{% endblock %}
 </div>
 
-<!-- ✅ SCRIPT PARA MOSTRAR EL TEXTO de ubicacion -->
+<!-- ✅ MENSAJES Y TEXTOS DINÁMICOS -->
+
+<!-- Hola -->
+<div id="hola-text" class="container mt-4" style="display: none;">
+    <div class="alert alert-info" id="texto-copiable" class="copiable-content">
+        <p> ✨ Hola ¡Haz de cada momento un recuerdo único! ✨</p>
+        <p>En Decogarideas creamos recuerdos personalizados para cualquier ocasión. 🎉</p>
+        <p>✨ Cotiza tus recuerdos a partir de 25 unidades y dale ese toque especial a tus eventos.</p>
+        <p>📦 Delivery adicional según el distrito. ¡Consulta tu zona!</p>
+        <p>👉 Visita nuestro catálogo y descubre todas las opciones:</p>
+        <p>https://instagram.com/decogarideas?igshid=MzRlODBiNWFlZA</p>
+        <p>💌 ¡Contáctanos ahora para más información y pedidos! ❤️</p>
+    </div>
+    <button class="btn btn-success mt-3" onclick="copiarTexto('texto-copiable')">Copiar texto</button>
+</div>
+
+<!-- Precio -->
+<div id="precio-texto" class="container mt-4" style="display: none;">
+    <div class="alert alert-info" id="texto-precio">
+        Los recuerdos personalizados tienen un costo desde S/5.00 por unidad (mínimo 25 unidades). ¡Solicita tu cotización!
+    </div>
+    <button class="btn btn-success mt-3" onclick="copiarTexto('texto-precio')">Copiar texto</button>
+</div>
+
+<!-- Ubicación -->
+<div id="ubicacion-texto" class="container mt-4" style="display: none;">
+    <div class="alert alert-info" id="texto-ubicacion">
+        Estamos ubicados en Av. Principal #123, Ciudad Ejemplo. ¡Te esperamos!
+    </div>
+    <button class="btn btn-success mt-3" onclick="copiarTexto('texto-ubicacion')">Copiar texto</button>
+</div>
+
+<!-- Pago -->
+<div id="pago-texto" class="container mt-4" style="display: none;">
+    <div class="alert alert-info" id="texto-pago">
+        Sí, aceptamos pago contra entrega para algunas zonas. Consulta disponibilidad según tu distrito.
+    </div>
+    <button class="btn btn-success mt-3" onclick="copiarTexto('texto-pago')">Copiar texto</button>
+</div>
+
+<!-- Delivery -->
+<div id="delivery-texto" class="container mt-4" style="display: none;">
+    <div class="alert alert-info" id="texto-delivery">
+        El costo de delivery varía según tu ubicación. Envíanos tu distrito para calcular el envío.
+    </div>
+    <button class="btn btn-success mt-3" onclick="copiarTexto('texto-delivery')">Copiar texto</button>
+</div>
+
+<!-- Modelos -->
+<div id="modelos-texto" class="container mt-4" style="display: none;">
+    <div class="alert alert-info" id="texto-modelos">
+        Revisa todos nuestros modelos aquí:
+        https://instagram.com/decogarideas?igshid=MzRlODBiNWFlZA
+    </div>
+    <button class="btn btn-success mt-3" onclick="copiarTexto('texto-modelos')">Copiar texto</button>
+</div>
+
+<!-- ✅ ALERTA DE COPIADO (Opcional) -->
+<div id="mensaje-copiado" class="alert alert-success text-center" style="display: none;">
+    ¡Texto copiado al portapapeles!
+</div>
+
+<!-- ✅ SCRIPTS -->
 <script>
+    function ocultarTodos() {
+        const secciones = ['hola-text', 'precio-texto', 'ubicacion-texto', 'pago-texto', 'delivery-texto', 'modelos-texto'];
+        secciones.forEach(id => {
+            document.getElementById(id).style.display = 'none';
+        });
+    }
+
+    function mostrarRespuestalsaludo() {
+        ocultarTodos();
+        document.getElementById('hola-text').style.display = 'block';
+    }
+
+    function mostrarPrecio() {
+        ocultarTodos();
+        document.getElementById('precio-texto').style.display = 'block';
+    }
+
     function mostrarUbicacion() {
+        ocultarTodos();
         document.getElementById('ubicacion-texto').style.display = 'block';
     }
+
+    function mostrarPago() {
+        ocultarTodos();
+        document.getElementById('pago-texto').style.display = 'block';
+    }
+
+    function mostrarDelivery() {
+        ocultarTodos();
+        document.getElementById('delivery-texto').style.display = 'block';
+    }
+
+    function mostrarModelos() {
+        ocultarTodos();
+        document.getElementById('modelos-texto').style.display = 'block';
+    }
+
+    function copiarTexto(idElemento) {
+        const elemento = document.getElementById(idElemento);
+        const parrafos = elemento.querySelectorAll('p');
+        let texto = '';
+
+        parrafos.forEach((p, index) => {
+            texto += p.innerText;
+            if (index < parrafos.length - 1) {
+                texto += '\n'; // Agrega salto de línea entre párrafos
+            }
+        });
+
+        navigator.clipboard.writeText(texto).then(() => {
+            const alerta = document.getElementById('mensaje-copiado');
+            alerta.style.display = 'block';
+            setTimeout(() => {
+                alerta.style.display = 'none';
+            }, 2000);
+        });
+    }
+
+
+
 </script>
 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

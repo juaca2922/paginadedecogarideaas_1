@@ -6,8 +6,8 @@
 
 {% block content %}
 <div class="form-group">
-    <label for="producto">Producto</label>
-    <select class="form-control" id="producto" name="producto" onchange="mostrarOpciones()" required>
+    <label for="producto" class="h4">Producto</label>
+    <select class="form-control form-control-lg" id="producto" name="producto" onchange="mostrarOpciones()" required>
         <option value="">Selecciona un producto</option>
         <option value="Maceta personalizada">Maceta personalizada</option>
         <option value="Caja de regalo">Caja de regalo</option>
@@ -18,8 +18,8 @@
 <!-- Opciones adicionales para Maceta personalizada -->
 <div id="maceta-options" style="display: none;">
     <div class="form-group">
-        <label for="tipo_maceta">Tipo de Maceta</label>
-        <select class="form-control" id="tipo_maceta" name="tipo_maceta" onchange="calcularPrecio()">
+        <label for="tipo_maceta" class="h4">Tipo de Maceta</label>
+        <select class="form-control form-control-lg" id="tipo_maceta" name="tipo_maceta" onchange="calcularPrecio()">
             <option value="">Selecciona el tipo de maceta</option>
             <option value="Maceta">Maceta</option>
             <option value="Maceta con yute">Maceta con yute</option>
@@ -33,18 +33,18 @@
 
 <!-- Cuando elijan un tipo de maceta -->
 <div id="cantidad-container" class="form-group" style="display: none;">
-    <label for="cantidad">Cantidad</label>
-    <input type="number" class="form-control" id="cantidad" name="cantidad" min="1" oninput="calcularPrecio()" required>
+    <label for="cantidad" class="h4">Cantidad</label>
+    <input type="number" class="form-control form-control-lg" id="cantidad" name="cantidad" min="1" oninput="calcularPrecio()" required>
 </div>
 
 <!-- Precio total -->
 <div id="precio-total" style="display: none;">
-    <p><strong>Precio Total: $<span id="total-price">0</span></strong></p>
+    <p><strong class="h4">Precio Total: S/ <span id="total-price">0</span></strong></p>
+    <p id="mensaje-confirmacion" class="h5" style="color: green;"></p> <!-- Aquí es donde aparecerá el mensaje -->
 </div>
 
-<!-- Botón para enviar -->
-<button type="submit" class="btn btn-primary">Solicitar Cotización</button>
-
+<!-- Botón para copiar el texto generado -->
+<button type="button" id="copiar-btn" class="btn btn-success btn-lg btn-block" style="display: none;" onclick="copiarTexto()">Copiar</button>
 <script>
     // Precios base de las macetas por unidad
     const preciosMacetas = {
@@ -78,16 +78,17 @@
         var cantidad = document.getElementById('cantidad').value;
         var precioTotal = document.getElementById('total-price');
         var precioMaceta = preciosMacetas[tipoMaceta];
+        var mensajeConfirmacion = document.getElementById('mensaje-confirmacion');
+        var copiarBtn = document.getElementById('copiar-btn');
 
         // Muestra el campo de cantidad solo si el tipo de maceta está seleccionado
         if (tipoMaceta) {
-            // Mostrar el campo de cantidad solo si el tipo de maceta está seleccionado
             document.getElementById('cantidad-container').style.display = 'block';
         } else {
             document.getElementById('cantidad-container').style.display = 'none';
         }
 
-        // Solo muestra el precio si hay un tipo de maceta seleccionado y una cantidad ingresada}
+        // Solo muestra el precio si hay un tipo de maceta seleccionado y una cantidad ingresada
         if (tipoMaceta && cantidad > 0) {
             let precioUnitario;
 
@@ -105,13 +106,37 @@
             // Calcular el total
             var total = precioUnitario * cantidad;
 
-            // Mostrar el precio total con dos decimales y añadir el texto "S/ "
-        precioTotal.innerText = `S/ ${total.toFixed(2)}`; // Cambio aquí: Agregado "S/" antes del precio
-        document.getElementById('precio-total').style.display = 'block';  // Muestra el precio total
-    } else {
-        document.getElementById('precio-total').style.display = 'none';  // Oculta el precio total si no hay selección
-    }
-}
-</script>
-{% endblock %}
+            // Modificar el mensaje de acuerdo al tipo de maceta
+            mensajeConfirmacion.innerText = `El precio por ${cantidad} ${tipoMaceta.toLowerCase()} es de S/ ${total.toFixed(2)}. ¡Incluye tarjeta personalizada, ${tipoMaceta.toLowerCase()}!`;
 
+            // Mostrar el precio total con dos decimales y añadir el texto "S/ "
+            precioTotal.innerText = `S/ ${total.toFixed(2)}`; // Cambio aquí: Agregado "S/" antes del precio
+            document.getElementById('precio-total').style.display = 'block';  // Muestra el precio total
+
+            // Mostrar el botón de copiar texto
+            copiarBtn.style.display = 'block';
+
+            // Almacenar el mensaje en el portapapeles
+            copiarBtn.setAttribute('data-clipboard-text', `El precio por ${cantidad} ${tipoMaceta.toLowerCase()} es de S/ ${total.toFixed(2)}. ¡Incluye tarjeta personalizada, ${tipoMaceta.toLowerCase()}!`);
+        } else {
+            document.getElementById('precio-total').style.display = 'none';  // Oculta el precio total si no hay selección
+            copiarBtn.style.display = 'none';  // Ocultar el botón de copiar si no hay precio
+        }
+    }
+
+    // Función para copiar el texto
+    function copiarTexto() {
+        var mensaje = document.getElementById('mensaje-confirmacion').innerText;
+
+        if (mensaje) {
+            // Copiar al portapapeles
+            navigator.clipboard.writeText(mensaje).then(function() {
+                alert('¡Texto copiado al portapapeles!');
+            }, function(err) {
+                alert('Error al copiar: ' + err);
+            });
+        }
+    }
+</script>
+
+{% endblock %}
