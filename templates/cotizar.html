@@ -2,141 +2,141 @@
 
 {% block title %}Cotizar - Decogarideas{% endblock %}
 
-{% block page_title %}¡Cotiza tu Producto!{% endblock %}
-
 {% block content %}
-<div class="form-group">
-    <label for="producto" class="h4">Producto</label>
-    <select class="form-control form-control-lg" id="producto" name="producto" onchange="mostrarOpciones()" required>
-        <option value="">Selecciona un producto</option>
-        <option value="Maceta personalizada">Maceta personalizada</option>
-        <option value="Caja de regalo">Caja de regalo</option>
-        <option value="Set de recuerdos">Set de recuerdos</option>
-    </select>
-</div>
+    <h1>¡Cotiza tu Producto!</h1>
 
-<!-- Opciones adicionales para Maceta personalizada -->
-<div id="maceta-options" style="display: none;">
+    <!-- Selección de producto -->
     <div class="form-group">
-        <label for="tipo_maceta" class="h4">Tipo de Maceta</label>
-        <select class="form-control form-control-lg" id="tipo_maceta" name="tipo_maceta" onchange="calcularPrecio()">
-            <option value="">Selecciona el tipo de maceta</option>
-            <option value="Maceta">Maceta</option>
-            <option value="Maceta con yute">Maceta con yute</option>
-            <option value="Maceta con caja">Maceta con caja</option>
-            <option value="Maceta con sticker">Maceta con sticker</option>
-            <!-- Nueva opción añadida -->
-            <option value="Maceta con girasol">Maceta con girasol</option>
+        <label for="producto" class="h4">Producto</label>
+        <select class="form-control form-control-lg" id="producto" name="producto" onchange="mostrarOpciones()" required>
+            <option value="">Selecciona un producto</option>
+            <option value="Maceta personalizada">Maceta personalizada</option>
+            <option value="Caja de regalo">Caja de regalo</option>
+            <option value="Set de recuerdos">Set de recuerdos</option>
         </select>
     </div>
-</div>
 
-<!-- Cuando elijan un tipo de maceta -->
-<div id="cantidad-container" class="form-group" style="display: none;">
-    <label for="cantidad" class="h4">Cantidad</label>
-    <input type="number" class="form-control form-control-lg" id="cantidad" name="cantidad" min="1" oninput="calcularPrecio()" required>
-</div>
+    <!-- Opciones adicionales para Maceta personalizada -->
+    <div id="maceta-options" style="display: none;">
+        <div class="form-group">
+            <label for="tipo_maceta" class="h4">Tipo de Maceta</label>
+            <select class="form-control form-control-lg" id="tipo_maceta" name="tipo_maceta" onchange="calcularPrecio()">
+                <option value="">Selecciona el tipo de maceta</option>
+                <option value="Maceta">Maceta</option>
+                <option value="Maceta con yute">Maceta con yute</option>
+                <option value="Maceta con caja">Maceta con caja</option>
+                <option value="Maceta con sticker">Maceta con sticker</option>
+                <option value="Maceta con girasol">Maceta con girasol</option>
+            </select>
+        </div>
+    </div>
 
-<!-- Precio total -->
-<div id="precio-total" style="display: none;">
-    <p><strong class="h4">Precio Total: S/ <span id="total-price">0</span></strong></p>
-    <p id="mensaje-confirmacion" class="h5" style="color: green;"></p> <!-- Aquí es donde aparecerá el mensaje -->
-</div>
+    <!-- Selección de cantidad -->
+    <div id="cantidad-container" class="form-group" style="display: none;">
+        <label for="cantidad" class="h4">Cantidad</label>
+        <input type="number" class="form-control form-control-lg" id="cantidad" name="cantidad" min="1" oninput="calcularPrecio()" required>
+    </div>
 
-<!-- Botón para copiar el texto generado -->
-<button type="button" id="copiar-btn" class="btn btn-success btn-lg btn-block" style="display: none;" onclick="copiarTexto()">Copiar</button>
-<script>
-    // Precios base de las macetas por unidad
-    const preciosMacetas = {
-        "Maceta": { "base": 10, "25-50": 4.8, "50-100": 4.2 , "100+": 4 },
-        "Maceta con yute": { "base": 10, "25-50": 9, "50-100": 8, "100+": 7 },
-        "Maceta con caja": { "base": 15, "25-50": 14, "50-100": 12, "100+": 10 },
-        "Maceta con sticker": { "base": 12, "25-50": 11, "50-100": 9, "100+": 8 },
-        "Maceta con girasol": { "base": 20, "25-50": 18, "50-100": 16, "100+": 14 }
-    };
+    <!-- Mostrar precio total y mensaje de confirmación -->
+    <div id="precio-total" style="display: none;">
+        <p><strong class="h4">Precio Total: S/ <span id="total-price">0</span></strong></p>
+        <p id="mensaje-confirmacion" class="h5" style="color: green;"></p>
+    </div>
 
-    function mostrarOpciones() {
-        var productoSeleccionado = document.getElementById('producto').value;
-        var macetaOptions = document.getElementById('maceta-options');
-        var cantidadContainer = document.getElementById('cantidad-container');
-        var precioTotal = document.getElementById('precio-total');
+    <!-- Botón para copiar el texto generado -->
+    <button class="btn btn-success mt-3" id="copiar-btn" style="display: none;" onclick="copiarTexto()">Copiar texto</button>
 
-        // Si el producto seleccionado es "Maceta personalizada", muestra las opciones adicionales
-        if (productoSeleccionado == "Maceta personalizada") {
-            macetaOptions.style.display = 'block';
-            cantidadContainer.style.display = 'none';  // Ocultar el campo de cantidad al principio
-            precioTotal.style.display = 'none'; // Ocultar el precio total al principio
-        } else {
-            macetaOptions.style.display = 'none';
-            cantidadContainer.style.display = 'none';
-            precioTotal.style.display = 'none';
-        }
-    }
+    <script>
+        const preciosMacetas = {
+            "Maceta": { "base": 10, "25-50": 4.8, "50-100": 4.2 , "100+": 4 },
+            "Maceta con yute": { "base": 10, "25-50": 9, "50-100": 8, "100+": 7 },
+            "Maceta con caja": { "base": 15, "25-50": 14, "50-100": 12, "100+": 10 },
+            "Maceta con sticker": { "base": 12, "25-50": 11, "50-100": 9, "100+": 8 },
+            "Maceta con girasol": { "base": 20, "25-50": 18, "50-100": 16, "100+": 14 }
+        };
 
-    function calcularPrecio() {
-        var tipoMaceta = document.getElementById('tipo_maceta').value;
-        var cantidad = document.getElementById('cantidad').value;
-        var precioTotal = document.getElementById('total-price');
-        var precioMaceta = preciosMacetas[tipoMaceta];
-        var mensajeConfirmacion = document.getElementById('mensaje-confirmacion');
-        var copiarBtn = document.getElementById('copiar-btn');
+        // Mostrar opciones dependiendo del producto seleccionado
+        function mostrarOpciones() {
+            var productoSeleccionado = document.getElementById('producto').value;
+            var macetaOptions = document.getElementById('maceta-options');
+            var cantidadContainer = document.getElementById('cantidad-container');
+            var precioTotal = document.getElementById('precio-total');
 
-        // Muestra el campo de cantidad solo si el tipo de maceta está seleccionado
-        if (tipoMaceta) {
-            document.getElementById('cantidad-container').style.display = 'block';
-        } else {
-            document.getElementById('cantidad-container').style.display = 'none';
-        }
-
-        // Solo muestra el precio si hay un tipo de maceta seleccionado y una cantidad ingresada
-        if (tipoMaceta && cantidad > 0) {
-            let precioUnitario;
-
-            // Lógica para determinar el precio según la cantidad
-            if (cantidad >= 100) {
-                precioUnitario = precioMaceta["100+"];
-            } else if (cantidad >= 50) {
-                precioUnitario = precioMaceta["50-100"];
-            } else if (cantidad >= 25) {
-                precioUnitario = precioMaceta["25-50"];
+            if (productoSeleccionado == "Maceta personalizada") {
+                macetaOptions.style.display = 'block';
+                cantidadContainer.style.display = 'none';
+                precioTotal.style.display = 'none';
             } else {
-                precioUnitario = precioMaceta["base"];
+                macetaOptions.style.display = 'none';
+                cantidadContainer.style.display = 'none';
+                precioTotal.style.display = 'none';
+            }
+        }
+
+        // Calcular el precio total en función del tipo de maceta y la cantidad
+        function calcularPrecio() {
+            var tipoMaceta = document.getElementById('tipo_maceta').value;
+            var cantidad = document.getElementById('cantidad').value;
+            var precioTotal = document.getElementById('total-price');
+            var precioMaceta = preciosMacetas[tipoMaceta];
+            var mensajeConfirmacion = document.getElementById('mensaje-confirmacion');
+            var copiarBtn = document.getElementById('copiar-btn');
+
+            console.log("Calculando precio..."); // Depuración
+
+            if (tipoMaceta) {
+                document.getElementById('cantidad-container').style.display = 'block';
+            } else {
+                document.getElementById('cantidad-container').style.display = 'none';
             }
 
-            // Calcular el total
-            var total = precioUnitario * cantidad;
+            if (tipoMaceta && cantidad > 0) {
+                let precioUnitario;
 
-            // Modificar el mensaje de acuerdo al tipo de maceta
-            mensajeConfirmacion.innerText = `El precio por ${cantidad} ${tipoMaceta.toLowerCase()} es de S/ ${total.toFixed(2)}. ¡Incluye tarjeta personalizada, ${tipoMaceta.toLowerCase()}!`;
+                if (cantidad >= 100) {
+                    precioUnitario = precioMaceta["100+"];
+                } else if (cantidad >= 50) {
+                    precioUnitario = precioMaceta["50-100"];
+                } else if (cantidad >= 25) {
+                    precioUnitario = precioMaceta["25-50"];
+                } else {
+                    precioUnitario = precioMaceta["base"];
+                }
 
-            // Mostrar el precio total con dos decimales y añadir el texto "S/ "
-            precioTotal.innerText = `S/ ${total.toFixed(2)}`; // Cambio aquí: Agregado "S/" antes del precio
-            document.getElementById('precio-total').style.display = 'block';  // Muestra el precio total
+                var total = precioUnitario * cantidad;
 
-            // Mostrar el botón de copiar texto
-            copiarBtn.style.display = 'block';
+                const mensaje = `El precio por ${cantidad} ${tipoMaceta.toLowerCase()} es de S/ ${total.toFixed(2)}. ¡Incluye tarjeta personalizada, ${tipoMaceta.toLowerCase()}!`;
 
-            // Almacenar el mensaje en el portapapeles
-            copiarBtn.setAttribute('data-clipboard-text', `El precio por ${cantidad} ${tipoMaceta.toLowerCase()} es de S/ ${total.toFixed(2)}. ¡Incluye tarjeta personalizada, ${tipoMaceta.toLowerCase()}!`);
-        } else {
-            document.getElementById('precio-total').style.display = 'none';  // Oculta el precio total si no hay selección
-            copiarBtn.style.display = 'none';  // Ocultar el botón de copiar si no hay precio
+                mensajeConfirmacion.innerText = mensaje;
+                precioTotal.innerText = `S/ ${total.toFixed(2)}`;
+                document.getElementById('precio-total').style.display = 'block';
+                copiarBtn.style.display = 'block'; // Mostrar el botón de copiar cuando se calcule el precio
+
+            } else {
+                document.getElementById('precio-total').style.display = 'none';
+                copiarBtn.style.display = 'none'; // Ocultar el botón si no se ha calculado el precio
+            }
         }
-    }
 
-    // Función para copiar el texto
-    function copiarTexto() {
-        var mensaje = document.getElementById('mensaje-confirmacion').innerText;
+        // Función para copiar el texto de confirmación
+        function copiarTexto() {
+            var mensajeElement = document.getElementById('mensaje-confirmacion');
 
-        if (mensaje) {
-            // Copiar al portapapeles
-            navigator.clipboard.writeText(mensaje).then(function() {
-                alert('¡Texto copiado al portapapeles!');
-            }, function(err) {
-                alert('Error al copiar: ' + err);
-            });
+            // Verificar si el elemento existe en el DOM
+            if (mensajeElement) {
+                var mensaje = mensajeElement.innerText;
+                console.log("Texto a copiar:", mensaje);  // Depuración
+
+                // Usamos la API de portapapeles para copiar el texto
+                navigator.clipboard.writeText(mensaje).then(function() {
+                    alert('¡Texto copiado al portapapeles!');
+                }).catch(function(err) {
+                    alert('Error al copiar: ' + err);
+                });
+            } else {
+                console.error("No se encontró el elemento con el ID 'mensaje-confirmacion'.");
+            }
         }
-    }
-</script>
-
+    </script>
 {% endblock %}
+
