@@ -7,141 +7,32 @@
 
     <!-- Selección de producto -->
     <div class="form-group">
-        <label for="producto" class="h4" style="font-size: 3.75rem;">Producto</label> <!-- Aumentado a 3.75rem -->
+        <label for="producto" class="h4" style="font-size: 3.75rem;">Producto</label>
         <select class="form-control form-control-lg" id="producto" name="producto" onchange="mostrarOpciones()" required>
             <option value="">Selecciona un producto</option>
-            <option value="Maceta personalizada">Maceta personalizada</option>
-            <option value="Caja de regalo">Caja de regalo</option>
-            <option value="Set de recuerdos">Set de recuerdos</option>
+            <option value="macetas">Maceta</option>
+            <option value="macetas_de_loza">Maceta de loza</option>
+            <option value="macetas_de_arcilla">Maceta de arcilla</option>
+            <option value="velas">Vela</option>
+            <option value="velas_tubo">Vela tubo</option>
         </select>
     </div>
 
-    <!-- Opciones adicionales para Maceta personalizada -->
-    <div id="maceta-options" style="display: none;">
-        <div class="form-group">
-            <label for="tipo_maceta" class="h4" style="font-size: 3.75rem;">Tipo de Maceta</label> <!-- Aumentado a 3.75rem -->
-            <select class="form-control form-control-lg" id="tipo_maceta" name="tipo_maceta" onchange="calcularPrecio()">
-                <option value="">Selecciona el tipo de maceta</option>
-                <option value="Maceta">Maceta</option>
-                <option value="Maceta con yute">Maceta con yute</option>
-                <option value="Maceta con caja">Maceta con caja</option>
-                <option value="Maceta con sticker">Maceta con sticker</option>
-                <option value="Maceta con girasol">Maceta con girasol</option>
-            </select>
-        </div>
-    </div>
-
-    <!-- Selección de cantidad -->
-    <div id="cantidad-container" class="form-group" style="display: none;">
-        <label for="cantidad" class="h4" style="font-size: 3.75rem;">Cantidad</label> <!-- Aumentado a 3.75rem -->
-        <input type="number" class="form-control form-control-lg" id="cantidad" name="cantidad" min="1" oninput="calcularPrecio()" required>
-    </div>
-
-    <!-- Mostrar precio total y mensaje de confirmación -->
-    <div id="precio-total" style="display: none; font-size: 3.75rem;">
-        <p><strong class="h4">Precio Total: S/ <span id="total-price">0</span></strong></p>
-        <p id="mensaje-confirmacion" class="h5" style="color: green;"></p>
-    </div>
-
-    <!-- Botón para copiar el texto generado -->
-    <button class="btn btn-success mt-3" id="copiar-btn" style="display: none; font-size: 3.75rem; padding: 15px 30px;" onclick="copiarTexto()">Copiar texto</button>
-
     <script>
-        const preciosMacetas = {
-            "Maceta": { "base": 10, "25-50": 4.8, "50-100": 4.2 , "100+": 4 },
-            "Maceta con yute": { "base": 10, "25-50": 9, "50-100": 8, "100+": 7 },
-            "Maceta con caja": { "base": 15, "25-50": 14, "50-100": 12, "100+": 10 },
-            "Maceta con sticker": { "base": 12, "25-50": 11, "50-100": 9, "100+": 8 },
-            "Maceta con girasol": { "base": 20, "25-50": 18, "50-100": 16, "100+": 14 }
-        };
-
-        // Mostrar opciones dependiendo del producto seleccionado
         function mostrarOpciones() {
             var productoSeleccionado = document.getElementById('producto').value;
-            var macetaOptions = document.getElementById('maceta-options');
-            var cantidadContainer = document.getElementById('cantidad-container');
-            var precioTotal = document.getElementById('precio-total');
-            var copiarBtn = document.getElementById('copiar-btn');
 
-            if (productoSeleccionado == "Maceta personalizada") {
-                macetaOptions.style.display = 'block';  // Mostrar las opciones de maceta
-                cantidadContainer.style.display = 'none'; // No mostrar la cantidad inicialmente
-                precioTotal.style.display = 'none'; // No mostrar el precio
-                copiarBtn.style.display = 'none'; // No mostrar el botón de copiar
-            } else {
-                macetaOptions.style.display = 'none'; // Ocultar las opciones de maceta
-                cantidadContainer.style.display = 'none'; // Ocultar el input de cantidad
-                precioTotal.style.display = 'none'; // Ocultar el precio total
-                copiarBtn.style.display = 'none'; // Ocultar el botón de copiar
-            }
-        }
-
-        function calcularPrecio() {
-            var tipoMaceta = document.getElementById('tipo_maceta').value;
-            var cantidad = document.getElementById('cantidad').value;
-            var precioTotal = document.getElementById('total-price');
-            var precioMaceta = preciosMacetas[tipoMaceta];
-            var mensajeConfirmacion = document.getElementById('mensaje-confirmacion');
-            var copiarBtn = document.getElementById('copiar-btn');
-
-            if (tipoMaceta) {
-                document.getElementById('cantidad-container').style.display = 'block';  // Mostrar el campo de cantidad
-            } else {
-                document.getElementById('cantidad-container').style.display = 'none'; // Ocultar el campo de cantidad si no hay tipo de maceta seleccionado
-            }
-
-            if (tipoMaceta && cantidad > 0) {
-                let precioUnitario;
-
-                if (cantidad >= 100) {
-                    precioUnitario = precioMaceta["100+"];
-                } else if (cantidad >= 50) {
-                    precioUnitario = precioMaceta["50-100"];
-                } else if (cantidad >= 25) {
-                    precioUnitario = precioMaceta["25-50"];
-                } else {
-                    precioUnitario = precioMaceta["base"];
-                }
-
-                var total = precioUnitario * cantidad;
-
-                const mensaje = `El precio por ${cantidad} ${tipoMaceta.toLowerCase()} es de S/ ${total.toFixed(2)}. ¡Incluye tarjeta personalizada, ${tipoMaceta.toLowerCase()}!`;
-
-                // Crear un párrafo para mostrar el mensaje
-                var mensajeP = document.createElement('p');
-                mensajeP.textContent = mensaje; // Establecer el texto del mensaje
-
-                // Limpiar cualquier mensaje previo
-                mensajeConfirmacion.innerHTML = '';
-                mensajeConfirmacion.appendChild(mensajeP); // Agregar el párrafo al contenedor
-
-                precioTotal.innerText = `S/ ${total.toFixed(2)}`;
-                document.getElementById('precio-total').style.display = 'block'; // Mostrar el precio total
-                copiarBtn.style.display = 'block'; // Mostrar el botón de copiar
-
-            } else {
-                document.getElementById('precio-total').style.display = 'none'; // Ocultar el precio si no se han seleccionado datos correctos
-                copiarBtn.style.display = 'none'; // Ocultar el botón de copiar
-            }
-        }
-
-        function copiarTexto() {
-            var mensajeElement = document.getElementById('mensaje-confirmacion');
-
-            if (mensajeElement) {
-                var texto = mensajeElement.innerText; // Obtenemos el texto del párrafo
-
-                navigator.clipboard.writeText(texto).then(function() {
-                    alert('¡Texto copiado al portapapeles!');
-                }).catch(function(err) {
-                    alert('Error al copiar: ' + err);
-                    console.error('Error al copiar:', err); // Depuración del error
-                });
-            } else {
-                console.error("No se encontró el elemento con el ID 'mensaje-confirmacion'.");
+            if (productoSeleccionado == "macetas") {
+                window.location.href = "/cotizar/macetas";  // Redirige a la ruta de Macetas
+            } else if (productoSeleccionado == "macetas_de_loza") {
+                window.location.href = "/cotizar/macetas_de_loza";  // Redirige a la ruta de Macetas de loza
+            } else if (productoSeleccionado == "macetas_de_arcilla") {
+                window.location.href = "/cotizar/macetas_de_arcilla";  // Redirige a la ruta de Macetas de arcilla
+            } else if (productoSeleccionado == "velas") {
+                window.location.href = "/cotizar/velas";  // Redirige a la ruta de Velas
+            } else if (productoSeleccionado == "velas_tubo") {
+                window.location.href = "/cotizar/velas_tubo";  // Redirige a la ruta de Velas tubo
             }
         }
     </script>
 {% endblock %}
-
-

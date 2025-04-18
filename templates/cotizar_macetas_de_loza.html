@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Cotizar Macetas de Loza - Decogarideas{% endblock %}
+
+{% block content %}
+  <!-- Selección de tipo de maceta de loza -->
+  <div class="form-group">
+      <label for="tipo_maceta_loza" class="h4" style="font-size: 3.75rem;">Tipo de Maceta de Loza</label>
+      <select class="form-control form-control-lg" id="tipo_maceta_loza" name="tipo_maceta_loza" onchange="calcularPrecio()">
+          <option value="">Selecciona el tipo de maceta de loza</option>
+          <option value="Palomas">Palomas</option>
+          <option value="Redondas">Redondas</option>
+          <option value="Octogonales">Octogonales</option>
+      </select>
+  </div>
+{% endblock %}

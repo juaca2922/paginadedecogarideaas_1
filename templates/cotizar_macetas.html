@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Cotizar Macetas - Decogarideas{% endblock %}
+
+{% block content %}
+  <!-- Selección de tipo de maceta -->
+    <div class="form-group">
+        <label for="tipo_maceta" class="h4" style="font-size: 3.75rem;">Tipo de Maceta</label>
+        <select class="form-control form-control-lg" id="tipo_maceta" name="tipo_maceta" onchange="calcularPrecio()">
+            <option value="">Selecciona el tipo de maceta</option>
+            <option value="Maceta">Maceta</option>
+            <option value="Maceta con yute">Maceta con yute</option>
+            <option value="Maceta con caja">Maceta con caja</option>
+            <option value="Maceta con sticker">Maceta con sticker</option>
+            <option value="Maceta con girasol">Maceta con girasol</option>
+        </select>
+    </div>
+{% endblock %}

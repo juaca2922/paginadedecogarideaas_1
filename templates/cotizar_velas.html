@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Cotizar Velas - Decogarideas{% endblock %}
+
+{% block content %}
+  <!-- Selección de tipo de vela -->
+  <div class="form-group">
+      <label for="tipo_vela" class="h4" style="font-size: 3.75rem;">Tipo de Vela</label>
+      <select class="form-control form-control-lg" id="tipo_vela" name="tipo_vela" onchange="calcularPrecio()">
+          <option value="">Selecciona el tipo de vela</option>
+          <option value="Vela con yute">Vela con yute</option>
+          <option value="Vela con yute y lazo verde">Vela con yute y lazo verde</option>
+          <option value="Vela con caja impresa">Vela con caja impresa</option>
+          <option value="Vela con caja">Vela con caja</option>
+      </select>
+  </div>
+{% endblock %}
