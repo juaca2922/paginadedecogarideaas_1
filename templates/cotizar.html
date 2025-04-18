@@ -6,8 +6,8 @@
     <h1 style="font-size: 3rem; text-align: center;">¡Cotiza tu Producto!</h1>
 
     <!-- Selección de producto -->
-    <div class="form-group" style="font-size: 1.75rem;">
-        <label for="producto" class="h4">Producto</label>
+    <div class="form-group">
+        <label for="producto" class="h4" style="font-size: 3.75rem;">Producto</label> <!-- Aumentado a 3.75rem -->
         <select class="form-control form-control-lg" id="producto" name="producto" onchange="mostrarOpciones()" required>
             <option value="">Selecciona un producto</option>
             <option value="Maceta personalizada">Maceta personalizada</option>
@@ -17,9 +17,9 @@
     </div>
 
     <!-- Opciones adicionales para Maceta personalizada -->
-    <div id="maceta-options" style="display: none; font-size: 1.75rem;">
+    <div id="maceta-options" style="display: none;">
         <div class="form-group">
-            <label for="tipo_maceta" class="h4">Tipo de Maceta</label>
+            <label for="tipo_maceta" class="h4" style="font-size: 3.75rem;">Tipo de Maceta</label> <!-- Aumentado a 3.75rem -->
             <select class="form-control form-control-lg" id="tipo_maceta" name="tipo_maceta" onchange="calcularPrecio()">
                 <option value="">Selecciona el tipo de maceta</option>
                 <option value="Maceta">Maceta</option>
@@ -32,19 +32,19 @@
     </div>
 
     <!-- Selección de cantidad -->
-    <div id="cantidad-container" class="form-group" style="display: none; font-size: 1.75rem;">
-        <label for="cantidad" class="h4">Cantidad</label>
+    <div id="cantidad-container" class="form-group" style="display: none;">
+        <label for="cantidad" class="h4" style="font-size: 3.75rem;">Cantidad</label> <!-- Aumentado a 3.75rem -->
         <input type="number" class="form-control form-control-lg" id="cantidad" name="cantidad" min="1" oninput="calcularPrecio()" required>
     </div>
 
     <!-- Mostrar precio total y mensaje de confirmación -->
-    <div id="precio-total" style="display: none; font-size: 1.75rem;">
+    <div id="precio-total" style="display: none; font-size: 3.75rem;">
         <p><strong class="h4">Precio Total: S/ <span id="total-price">0</span></strong></p>
         <p id="mensaje-confirmacion" class="h5" style="color: green;"></p>
     </div>
 
     <!-- Botón para copiar el texto generado -->
-    <button class="btn btn-success mt-3" id="copiar-btn" style="display: none; font-size: 1.75rem; padding: 15px 30px;" onclick="copiarTexto()">Copiar texto</button>
+    <button class="btn btn-success mt-3" id="copiar-btn" style="display: none; font-size: 3.75rem; padding: 15px 30px;" onclick="copiarTexto()">Copiar texto</button>
 
     <script>
         const preciosMacetas = {
@@ -143,4 +143,5 @@
         }
     </script>
 {% endblock %}
+
 
