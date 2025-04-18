@@ -7,46 +7,36 @@
 
 <!-- Selección de producto -->
 <div class="form-group">
-    <label for="producto" class="h4" style="font-size: 3.75rem;">Producto</label>
-    <select class="form-control form-control-lg" id="producto" name="producto" onchange="mostrarOpciones()" required>
+<label for="cantidad" class="h4" style="font-size: 3.5rem;">Cantidad</label>
+    <select class="form-control"
+            id="producto"
+            name="producto"
+            onchange="mostrarOpciones()"
+            required
+            style="font-size: 2.5rem; height: 80px;">
         <option value="">Selecciona un producto</option>
         <option value="macetas">Maceta</option>
-        <option value="macetas_de_loza">Maceta de loza</option>
-        <option value="macetas_de_arcilla">Maceta de arcilla</option>
-        <option value="velas">Vela</option>
-        <option value="velas_tubo">Vela tubo</option>
     </select>
 </div>
 
 <!-- Contenedor donde se carga dinámicamente el contenido del producto -->
 <div id="producto-seleccionado" class="mt-4" aria-live="polite"></div>
 
-<script>
-    function mostrarOpciones() {
-        const productoSeleccionado = document.getElementById('producto').value;
-        const contenedor = document.getElementById('producto-seleccionado');
+<!-- Campo de cantidad -->
+<div class="form-group mt-4" id="cantidad-container" style="display:none;">
+<label for="producto" class="h4" style="font-size: 3.5rem;">Producto</label>
+    <input type="number" id="cantidad" name="cantidad"
+           class="form-control"
+           style="font-size: 2.5rem; height: 80px;"
+           placeholder="Ingresa la cantidad" min="1" required>
+</div>
 
-        console.log("Producto seleccionado:", productoSeleccionado); // Depuración
+<!-- Mensaje de precios -->
+<p class="mt-3" id="precio-macetas" style="display:none; font-size: 2rem;"></p>
+<p class="mt-2 text-info font-weight-bold" id="resumen-cotizacion" style="display:none; font-size: 3rem;"></p>
 
-        if (!productoSeleccionado) {
-            contenedor.innerHTML = '';
-            return;
-        }
 
-        contenedor.innerHTML = '<p>Cargando opciones...</p>';
 
-        fetch(`/cotizar_producto_seleccionado/${productoSeleccionado}`)
-            .then(response => {
-                if (!response.ok) throw new Error(`Error ${response.status}`);
-                return response.text();
-            })
-            .then(data => {
-                contenedor.innerHTML = data;
-            })
-            .catch(error => {
-                console.error('Error al cargar el contenido:', error);
-                contenedor.innerHTML = '<p>Error al cargar las opciones del producto. Por favor, intenta nuevamente.</p>';
-            });
-    }
-</script>
+<!-- JS externo -->
+<script src="{{ url_for('static', filename='cotizar_macetas.js') }}"></script>
 {% endblock %}

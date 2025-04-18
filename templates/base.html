@@ -43,10 +43,12 @@
     </div>
 </nav>
 
-<!-- ✅ CONTENIDO PRINCIPAL -->
-<div class="container mt-4">
-    {% block content %}
-    {% endblock %}
+<!-- ✅ CONTENIDO PRINCIPAL MEJORADO -->
+<div class="d-flex justify-content-center mt-5 mb-5">
+    <div class="p-5 shadow rounded bg-white w-100" style="max-width: 900px;">
+        {% block content %}
+        {% endblock %}
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
