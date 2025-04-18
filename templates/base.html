@@ -57,6 +57,28 @@
 
 <!-- ✅ CSS PERSONALIZADO -->
 <style>
+    /* Asegurar que el fondo se vea correctamente en los enlaces "Inicio" y "Respuestas Rápidas" */
+    .navbar .nav-item.active .nav-link,
+    .navbar .nav-item .nav-link {
+        background-color: #343a40 !important; /* Fondo oscuro para los enlaces */
+        color: white !important; /* Color de texto blanco */
+    }
+
+    /* Asegurar que el fondo del menú desplegable esté presente */
+    .navbar .dropdown-menu {
+        background-color: #343a40 !important; /* Fondo oscuro para el dropdown */
+    }
+
+    /* Asegurar que los elementos del dropdown tengan texto blanco */
+    .navbar .dropdown-item {
+        color: #fff !important; /* Color de texto blanco */
+    }
+
+    /* Cambiar el color de fondo al pasar el ratón sobre los items del dropdown */
+    .navbar .dropdown-item:hover {
+        background-color: #495057 !important; /* Fondo al pasar el mouse */
+    }
+
     /* Aumentar la altura de la barra de navegación en dispositivos móviles */
     @media (max-width: 768px) {
         .navbar {
@@ -75,23 +97,8 @@
             padding: 10px; /* Aumenta el tamaño del botón del menú hamburguesa */
         }
 
-        /* Asegurar que el fondo se vea correctamente en la navbar desplegada */
         .navbar-collapse {
-            background-color: #343a40 !important; /* Agrega un fondo oscuro para el contenido desplegado */
-        }
-
-        /* Asegurar que el fondo del menú desplegable esté presente */
-        .dropdown-menu {
-            background-color: #343a40 !important; /* Fondo oscuro para el dropdown */
-        }
-
-        /* Asegurar que los elementos del dropdown tengan texto legible y contraste */
-        .dropdown-item {
-            color: #fff !important; /* Color de texto blanco */
-        }
-
-        .dropdown-item:hover {
-            background-color: #495057 !important; /* Color de fondo al pasar el mouse */
+            background-color: #343a40 !important; /* Asegura que el fondo se vea en el menú desplegable */
         }
     }
 
