@@ -61,82 +61,86 @@
             var macetaOptions = document.getElementById('maceta-options');
             var cantidadContainer = document.getElementById('cantidad-container');
             var precioTotal = document.getElementById('precio-total');
-
-            if (productoSeleccionado == "Maceta personalizada") {
-                macetaOptions.style.display = 'block';
-                cantidadContainer.style.display = 'none';
-                precioTotal.style.display = 'none';
-            } else {
-                macetaOptions.style.display = 'none';
-                cantidadContainer.style.display = 'none';
-                precioTotal.style.display = 'none';
-            }
-        }
-
-        // Calcular el precio total en función del tipo de maceta y la cantidad
-        function calcularPrecio() {
-            var tipoMaceta = document.getElementById('tipo_maceta').value;
-            var cantidad = document.getElementById('cantidad').value;
-            var precioTotal = document.getElementById('total-price');
-            var precioMaceta = preciosMacetas[tipoMaceta];
-            var mensajeConfirmacion = document.getElementById('mensaje-confirmacion');
             var copiarBtn = document.getElementById('copiar-btn');
 
-            console.log("Calculando precio..."); // Depuración
-
-            if (tipoMaceta) {
-                document.getElementById('cantidad-container').style.display = 'block';
+            if (productoSeleccionado == "Maceta personalizada") {
+                macetaOptions.style.display = 'block';  // Mostrar las opciones de maceta
+                cantidadContainer.style.display = 'none'; // No mostrar la cantidad inicialmente
+                precioTotal.style.display = 'none'; // No mostrar el precio
+                copiarBtn.style.display = 'none'; // No mostrar el botón de copiar
             } else {
-                document.getElementById('cantidad-container').style.display = 'none';
-            }
-
-            if (tipoMaceta && cantidad > 0) {
-                let precioUnitario;
-
-                if (cantidad >= 100) {
-                    precioUnitario = precioMaceta["100+"];
-                } else if (cantidad >= 50) {
-                    precioUnitario = precioMaceta["50-100"];
-                } else if (cantidad >= 25) {
-                    precioUnitario = precioMaceta["25-50"];
-                } else {
-                    precioUnitario = precioMaceta["base"];
-                }
-
-                var total = precioUnitario * cantidad;
-
-                const mensaje = `El precio por ${cantidad} ${tipoMaceta.toLowerCase()} es de S/ ${total.toFixed(2)}. ¡Incluye tarjeta personalizada, ${tipoMaceta.toLowerCase()}!`;
-
-                mensajeConfirmacion.innerText = mensaje;
-                precioTotal.innerText = `S/ ${total.toFixed(2)}`;
-                document.getElementById('precio-total').style.display = 'block';
-                copiarBtn.style.display = 'block'; // Mostrar el botón de copiar cuando se calcule el precio
-
-            } else {
-                document.getElementById('precio-total').style.display = 'none';
-                copiarBtn.style.display = 'none'; // Ocultar el botón si no se ha calculado el precio
+                macetaOptions.style.display = 'none'; // Ocultar las opciones de maceta
+                cantidadContainer.style.display = 'none'; // Ocultar el input de cantidad
+                precioTotal.style.display = 'none'; // Ocultar el precio total
+                copiarBtn.style.display = 'none'; // Ocultar el botón de copiar
             }
         }
+  function calcularPrecio() {
+    var tipoMaceta = document.getElementById('tipo_maceta').value;
+    var cantidad = document.getElementById('cantidad').value;
+    var precioTotal = document.getElementById('total-price');
+    var precioMaceta = preciosMacetas[tipoMaceta];
+    var mensajeConfirmacion = document.getElementById('mensaje-confirmacion');
+    var copiarBtn = document.getElementById('copiar-btn');
 
-        // Función para copiar el texto de confirmación
-        function copiarTexto() {
-            var mensajeElement = document.getElementById('mensaje-confirmacion');
+    if (tipoMaceta) {
+        document.getElementById('cantidad-container').style.display = 'block';  // Mostrar el campo de cantidad
+    } else {
+        document.getElementById('cantidad-container').style.display = 'none'; // Ocultar el campo de cantidad si no hay tipo de maceta seleccionado
+    }
 
-            // Verificar si el elemento existe en el DOM
-            if (mensajeElement) {
-                var mensaje = mensajeElement.innerText;
-                console.log("Texto a copiar:", mensaje);  // Depuración
+    if (tipoMaceta && cantidad > 0) {
+        let precioUnitario;
 
-                // Usamos la API de portapapeles para copiar el texto
-                navigator.clipboard.writeText(mensaje).then(function() {
-                    alert('¡Texto copiado al portapapeles!');
-                }).catch(function(err) {
-                    alert('Error al copiar: ' + err);
-                });
-            } else {
-                console.error("No se encontró el elemento con el ID 'mensaje-confirmacion'.");
-            }
+        if (cantidad >= 100) {
+            precioUnitario = precioMaceta["100+"];
+        } else if (cantidad >= 50) {
+            precioUnitario = precioMaceta["50-100"];
+        } else if (cantidad >= 25) {
+            precioUnitario = precioMaceta["25-50"];
+        } else {
+            precioUnitario = precioMaceta["base"];
         }
+
+        var total = precioUnitario * cantidad;
+
+        const mensaje = `El precio por ${cantidad} ${tipoMaceta.toLowerCase()} es de S/ ${total.toFixed(2)}. ¡Incluye tarjeta personalizada, ${tipoMaceta.toLowerCase()}!`;
+
+        // Crear un párrafo para mostrar el mensaje
+        var mensajeP = document.createElement('p');
+        mensajeP.textContent = mensaje; // Establecer el texto del mensaje
+
+        // Limpiar cualquier mensaje previo
+        mensajeConfirmacion.innerHTML = '';
+        mensajeConfirmacion.appendChild(mensajeP); // Agregar el párrafo al contenedor
+
+        precioTotal.innerText = `S/ ${total.toFixed(2)}`;
+        document.getElementById('precio-total').style.display = 'block'; // Mostrar el precio total
+        copiarBtn.style.display = 'block'; // Mostrar el botón de copiar
+
+    } else {
+        document.getElementById('precio-total').style.display = 'none'; // Ocultar el precio si no se han seleccionado datos correctos
+        copiarBtn.style.display = 'none'; // Ocultar el botón de copiar
+    }
+  }
+
+ function copiarTexto() {
+    var mensajeElement = document.getElementById('mensaje-confirmacion');
+
+    if (mensajeElement) {
+        var texto = mensajeElement.innerText; // Obtenemos el texto del párrafo
+
+        navigator.clipboard.writeText(texto).then(function() {
+            alert('¡Texto copiado al portapapeles!');
+        }).catch(function(err) {
+            alert('Error al copiar: ' + err);
+            console.error('Error al copiar:', err); // Depuración del error
+        });
+    } else {
+        console.error("No se encontró el elemento con el ID 'mensaje-confirmacion'.");
+    }
+}
+
     </script>
 {% endblock %}
 

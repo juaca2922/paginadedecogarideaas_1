@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Respuesta Rápida: ¿Dónde te encuentras ubicado?{% endblock %}
+
+{% block content %}
+    <h1>Respuesta Rápida: ¿Dónde te encuentras ubicado?</h1>
+
+    <!-- Respuesta a la ubicación -->
+    <div id="ubicacion-texto" class="container mt-4">
+        <div class="alert alert-info" id="texto-ubicacion">
+            <p>🌍 Somos una tienda virtual.</p>
+            <p>🛵✨ Realizamos entregas a domicilio dentro de Lima Metropolitana.</p>
+            <p>🚫 (No contamos con tienda física por el momento).</p>
+        </div>
+        <button class="btn btn-success mt-3" onclick="copiarTexto('texto-ubicacion')">Copiar texto</button>
+    </div>
+
+    <script>
+        // Función que copia el texto del elemento con el id proporcionado
+        function copiarTexto(idElemento) {
+            const elemento = document.getElementById(idElemento); // Obtener el elemento con el id
+            const parrafos = elemento.querySelectorAll('p'); // Seleccionar todos los párrafos dentro del elemento
+            let texto = '';
+
+            // Recorrer cada párrafo y agregar su texto al texto final
+            parrafos.forEach((p, index) => {
+                texto += p.innerText; // Agregar el texto del párrafo
+                if (index < parrafos.length - 1) {
+                    texto += '\n'; // Agregar salto de línea entre párrafos
+                }
+            });
+
+            // Usar la API de portapapeles para copiar el texto
+            navigator.clipboard.writeText(texto).then(() => {
+                // Mostrar alerta de éxito
+                alert('¡Texto copiado al portapapeles!');
+            }).catch((err) => {
+                // Mostrar error en caso de que no se pueda copiar
+                alert('Error al copiar: ' + err);
+            });
+        }
+    </script>
+{% endblock %}

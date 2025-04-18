@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Respuesta: Modelos Disponibles{% endblock %}
+
+{% block content %}
+    <h1>Modelos Disponibles</h1>
+    
+    <p>✨ En Decogarideas tenemos una variedad de modelos personalizados para todos los gustos y ocasiones.</p>
+    <p>💬 ¡Echa un vistazo a nuestro catálogo para descubrir más opciones!</p>
+
+    <p>👉 Si deseas más información sobre los modelos o ver el catálogo completo, haz clic en el siguiente enlace para contactarnos directamente en WhatsApp:</p>
+    <a href="https://wa.me/c/51981460411?text=Hola%20quiero%20ver%20el%20cat%C3%A1logo%20de%20modelos%20disponibles." target="_blank">Ver Catálogo de Modelos en WhatsApp</a>
+
+    <p>📸 Si prefieres, también puedes visitar nuestro catálogo en Instagram:</p>
+    <a href="https://instagram.com/decogarideas?igshid=MzRlODBiNWFlZA" target="_blank">Ver Catálogo en Instagram</a>
+
+    <!-- Botón para copiar el texto completo -->
+    <div id="copiar-boton" style="display:block;">
+        <button class="btn btn-success mt-3" onclick="copiarTexto()">Copiar texto</button>
+    </div>
+
+    <script>
+        // Función para copiar el texto del mensaje completo
+        function copiarTexto() {
+            const texto = `
+✨ En Decogarideas tenemos una variedad de modelos personalizados para todos los gustos y ocasiones.
+💬 ¡Echa un vistazo a nuestro catálogo para descubrir más opciones!
+
+👉 Si deseas más información sobre los modelos o ver el catálogo completo, haz clic en el siguiente enlace para contactarnos directamente en WhatsApp:
+https://wa.me/c/51981460411?text=Hola%20quiero%20ver%20el%20cat%C3%A1logo%20de%20modelos%20disponibles.
+
+📸 Si prefieres, también puedes visitar nuestro catálogo en Instagram:
+https://instagram.com/decogarideas?igshid=MzRlODBiNWFlZA
+            `;
+
+            // Usar la API del portapapeles para copiar el texto
+            navigator.clipboard.writeText(texto).then(() => {
+                alert('¡Texto copiado al portapapeles!');
+            }).catch((err) => {
+                alert('Error al copiar: ' + err);
+            });
+        }
+    </script>
+{% endblock %}

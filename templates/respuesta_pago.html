@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Respuesta: Método de Pago{% endblock %}
+
+{% block content %}
+    <h1>Respuesta Rápida: ¿Se paga contra entrega?</h1>
+
+    <!-- Respuesta al pago -->
+    <div id="pago-texto" class="container mt-4">
+        <div class="alert alert-info" id="texto-pago">
+            <p>💳 Sí, aceptamos pago contra entrega para todas las zonas de Lima. 🚚</p>
+            <p>📍 Para separar tu pedido, debes abonar S/ 20.00. El saldo restante se paga contra entrega. 😊</p>
+            <p>📍 ¡Estamos listos para enviarte tu pedido a cualquier distrito de Lima! ¡Estamos para ayudarte! 😊</p>
+        </div>
+        <button class="btn btn-success mt-3" onclick="copiarTexto('texto-pago')">Copiar texto</button>
+    </div>
+
+    <script>
+        // Función que copia el texto del elemento con el id proporcionado
+        function copiarTexto(idElemento) {
+            const elemento = document.getElementById(idElemento); // Obtener el elemento con el id
+            const parrafos = elemento.querySelectorAll('p'); // Seleccionar todos los párrafos dentro del elemento
+            let texto = '';
+
+            // Recorrer cada párrafo y agregar su texto al texto final
+            parrafos.forEach((p, index) => {
+                texto += p.innerText;
+                if (index < parrafos.length - 1) {
+                    texto += '\n'; // Agregar salto de línea entre párrafos
+                }
+            });
+
+            // Usar la API de portapapeles para copiar el texto
+            navigator.clipboard.writeText(texto).then(() => {
+                // Mostrar alerta de éxito
+                alert('¡Texto copiado al portapapeles!');
+            }).catch((err) => {
+                // Mostrar error en caso de que no se pueda copiar
+                alert('Error al copiar: ' + err);
+            });
+        }
+    </script>
+{% endblock %}

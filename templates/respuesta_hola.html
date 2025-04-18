@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Respuesta Rápida: Hola, ¿Sigue disponible?{% endblock %}
+
+{% block content %}
+    <h1>Respuestas Rápidas</h1>
+
+    <!-- Respuesta al "Hola" -->
+    <div id="hola-text" class="container mt-4">
+        <div class="alert alert-info" id="texto-copiable" class="copiable-content">
+            <p> ✨ Hola ¡Haz de cada momento un recuerdo único! ✨</p>
+            <p>En Decogarideas creamos recuerdos personalizados para cualquier ocasión. 🎉</p>
+            <p>✨ Cotiza tus recuerdos a partir de 25 unidades y dale ese toque especial a tus eventos.</p>
+            <p>📦 Delivery adicional según el distrito. ¡Consulta tu zona!</p>
+            <p>👉 Visita nuestro catálogo y descubre todas las opciones:</p>
+            <p>https://instagram.com/decogarideas?igshid=MzRlODBiNWFlZA</p>
+            <p>💌 ¡Contáctanos ahora para más información y pedidos! ❤️</p>
+        </div>
+        <button class="btn btn-success mt-3" onclick="copiarTexto('texto-copiable')">Copiar texto</button>
+    </div>
+
+    <script>
+        // Función que copia el texto del elemento con el id proporcionado
+        function copiarTexto(idElemento) {
+            const elemento = document.getElementById(idElemento); // Obtener el elemento con el id
+            const parrafos = elemento.querySelectorAll('p'); // Seleccionar todos los párrafos dentro del elemento
+            let texto = '';
+
+            // Recorrer cada párrafo y agregar su texto al texto final
+            parrafos.forEach((p, index) => {
+                texto += p.innerText;
+                if (index < parrafos.length - 1) {
+                    texto += '\n'; // Agregar salto de línea entre párrafos
+                }
+            });
+
+            // Usar la API de portapapeles para copiar el texto
+            navigator.clipboard.writeText(texto).then(() => {
+                // Mostrar alerta de éxito
+                alert('¡Texto copiado al portapapeles!');
+            }).catch((err) => {
+                // Mostrar error en caso de que no se pueda copiar
+                alert('Error al copiar: ' + err);
+            });
+        }
+    </script>
+
+{% endblock %}

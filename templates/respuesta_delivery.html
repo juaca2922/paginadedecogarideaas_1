@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}Respuesta: Cotización de Delivery{% endblock %}
+
+{% block content %}
+    <h1>¡Cotiza tu Delivery!</h1>
+    <div class="alert alert-info">
+        <p>🚚 El costo de delivery varía según tu ubicación. Ingresa tu distrito y te diremos el costo.</p>
+        <p>💬 Ingresa tu distrito y te ayudaremos a calcular el costo del delivery.</p>
+    </div>
+
+    <!-- Formulario para ingresar la ubicación -->
+    <div class="form-group">
+        <label for="distrito">Ingresa tu distrito:</label>
+        <input type="text" class="form-control" id="distrito" name="distrito" placeholder="Ej. Miraflores, San Isidro, La Molina, etc." required>
+    </div>
+
+    <!-- Resultado con el precio del delivery -->
+    <div id="resultado" style="display:none;" class="alert alert-success mt-3">
+        <span id="texto-delivery"></span>
+    </div>
+
+    <!-- Botón para copiar el texto, ahora debajo del resultado -->
+    <div id="copiar-boton" style="display:none;">
+        <button class="btn btn-success mt-3" onclick="copiarTexto()">Copiar texto</button>
+    </div>
+
+    <script>
+        // Precios de delivery por distrito
+        const preciosDelivery = {
+            "la molina": 10,
+            "miraflores": 5,
+            "san isidro": 6,
+            "surco": 7,
+            "barranco": 5,
+            "san borja": 5,
+            "callao": 8,
+            "ate": 5,
+            "san juan de lurigancho": 4,
+            "el agustino": 4,
+            "chorrillos": 6,
+            "comas": 6,
+            "ventanilla": 7,
+            "los olivos": 7,
+            "lima cercado": 5,
+            "puente piedra": 7,
+            "villa el salvador": 6,
+            "villa maría del triunfo": 6,
+            // Puedes agregar más distritos y sus respectivos precios
+        };
+
+        // Función para manejar el cambio en el campo de distrito
+        document.getElementById('distrito').addEventListener('input', function() {
+            var distrito = document.getElementById('distrito').value.trim().toLowerCase(); // Convertir a minúsculas
+
+            // Verifica si el distrito está en el objeto de precios
+            if (preciosDelivery[distrito]) {
+                var precio = preciosDelivery[distrito];
+                // Mostrar el texto con el costo de delivery al distrito ingresado
+                document.getElementById('texto-delivery').textContent = `El costo del delivery a ${distrito.charAt(0).toUpperCase() + distrito.slice(1)} es: S/ ${precio.toFixed(2)}`;
+                document.getElementById('resultado').style.display = 'block'; // Muestra el resultado
+                document.getElementById('copiar-boton').style.display = 'block'; // Muestra el botón para copiar
+            } else {
+                document.getElementById('resultado').style.display = 'none'; // Oculta el resultado
+                document.getElementById('copiar-boton').style.display = 'none'; // Oculta el botón si no hay resultado
+            }
+        });
+
+        // Función para copiar el texto del resultado
+        function copiarTexto() {
+            var texto = document.getElementById('texto-delivery').textContent; // Obtener el texto del resultado
+
+            // Usar la API de portapapeles para copiar el texto
+            navigator.clipboard.writeText(texto).then(() => {
+                // Mostrar alerta de éxito
+                alert('¡Texto copiado al portapapeles!');
+            }).catch((err) => {
+                // Mostrar error en caso de que no se pueda copiar
+                alert('Error al copiar: ' + err);
+            });
+        }
+    </script>
+{% endblock %}
