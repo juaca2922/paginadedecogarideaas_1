@@ -3,10 +3,10 @@
 {% block title %}Cotizar - Decogarideas{% endblock %}
 
 {% block content %}
-    <h1>¡Cotiza tu Producto!</h1>
+    <h1 style="font-size: 3rem; text-align: center;">¡Cotiza tu Producto!</h1>
 
     <!-- Selección de producto -->
-    <div class="form-group">
+    <div class="form-group" style="font-size: 1.75rem;">
         <label for="producto" class="h4">Producto</label>
         <select class="form-control form-control-lg" id="producto" name="producto" onchange="mostrarOpciones()" required>
             <option value="">Selecciona un producto</option>
@@ -17,7 +17,7 @@
     </div>
 
     <!-- Opciones adicionales para Maceta personalizada -->
-    <div id="maceta-options" style="display: none;">
+    <div id="maceta-options" style="display: none; font-size: 1.75rem;">
         <div class="form-group">
             <label for="tipo_maceta" class="h4">Tipo de Maceta</label>
             <select class="form-control form-control-lg" id="tipo_maceta" name="tipo_maceta" onchange="calcularPrecio()">
@@ -32,19 +32,19 @@
     </div>
 
     <!-- Selección de cantidad -->
-    <div id="cantidad-container" class="form-group" style="display: none;">
+    <div id="cantidad-container" class="form-group" style="display: none; font-size: 1.75rem;">
         <label for="cantidad" class="h4">Cantidad</label>
         <input type="number" class="form-control form-control-lg" id="cantidad" name="cantidad" min="1" oninput="calcularPrecio()" required>
     </div>
 
     <!-- Mostrar precio total y mensaje de confirmación -->
-    <div id="precio-total" style="display: none;">
+    <div id="precio-total" style="display: none; font-size: 1.75rem;">
         <p><strong class="h4">Precio Total: S/ <span id="total-price">0</span></strong></p>
         <p id="mensaje-confirmacion" class="h5" style="color: green;"></p>
     </div>
 
     <!-- Botón para copiar el texto generado -->
-    <button class="btn btn-success mt-3" id="copiar-btn" style="display: none;" onclick="copiarTexto()">Copiar texto</button>
+    <button class="btn btn-success mt-3" id="copiar-btn" style="display: none; font-size: 1.75rem; padding: 15px 30px;" onclick="copiarTexto()">Copiar texto</button>
 
     <script>
         const preciosMacetas = {
@@ -75,72 +75,72 @@
                 copiarBtn.style.display = 'none'; // Ocultar el botón de copiar
             }
         }
-  function calcularPrecio() {
-    var tipoMaceta = document.getElementById('tipo_maceta').value;
-    var cantidad = document.getElementById('cantidad').value;
-    var precioTotal = document.getElementById('total-price');
-    var precioMaceta = preciosMacetas[tipoMaceta];
-    var mensajeConfirmacion = document.getElementById('mensaje-confirmacion');
-    var copiarBtn = document.getElementById('copiar-btn');
 
-    if (tipoMaceta) {
-        document.getElementById('cantidad-container').style.display = 'block';  // Mostrar el campo de cantidad
-    } else {
-        document.getElementById('cantidad-container').style.display = 'none'; // Ocultar el campo de cantidad si no hay tipo de maceta seleccionado
-    }
+        function calcularPrecio() {
+            var tipoMaceta = document.getElementById('tipo_maceta').value;
+            var cantidad = document.getElementById('cantidad').value;
+            var precioTotal = document.getElementById('total-price');
+            var precioMaceta = preciosMacetas[tipoMaceta];
+            var mensajeConfirmacion = document.getElementById('mensaje-confirmacion');
+            var copiarBtn = document.getElementById('copiar-btn');
 
-    if (tipoMaceta && cantidad > 0) {
-        let precioUnitario;
+            if (tipoMaceta) {
+                document.getElementById('cantidad-container').style.display = 'block';  // Mostrar el campo de cantidad
+            } else {
+                document.getElementById('cantidad-container').style.display = 'none'; // Ocultar el campo de cantidad si no hay tipo de maceta seleccionado
+            }
 
-        if (cantidad >= 100) {
-            precioUnitario = precioMaceta["100+"];
-        } else if (cantidad >= 50) {
-            precioUnitario = precioMaceta["50-100"];
-        } else if (cantidad >= 25) {
-            precioUnitario = precioMaceta["25-50"];
-        } else {
-            precioUnitario = precioMaceta["base"];
+            if (tipoMaceta && cantidad > 0) {
+                let precioUnitario;
+
+                if (cantidad >= 100) {
+                    precioUnitario = precioMaceta["100+"];
+                } else if (cantidad >= 50) {
+                    precioUnitario = precioMaceta["50-100"];
+                } else if (cantidad >= 25) {
+                    precioUnitario = precioMaceta["25-50"];
+                } else {
+                    precioUnitario = precioMaceta["base"];
+                }
+
+                var total = precioUnitario * cantidad;
+
+                const mensaje = `El precio por ${cantidad} ${tipoMaceta.toLowerCase()} es de S/ ${total.toFixed(2)}. ¡Incluye tarjeta personalizada, ${tipoMaceta.toLowerCase()}!`;
+
+                // Crear un párrafo para mostrar el mensaje
+                var mensajeP = document.createElement('p');
+                mensajeP.textContent = mensaje; // Establecer el texto del mensaje
+
+                // Limpiar cualquier mensaje previo
+                mensajeConfirmacion.innerHTML = '';
+                mensajeConfirmacion.appendChild(mensajeP); // Agregar el párrafo al contenedor
+
+                precioTotal.innerText = `S/ ${total.toFixed(2)}`;
+                document.getElementById('precio-total').style.display = 'block'; // Mostrar el precio total
+                copiarBtn.style.display = 'block'; // Mostrar el botón de copiar
+
+            } else {
+                document.getElementById('precio-total').style.display = 'none'; // Ocultar el precio si no se han seleccionado datos correctos
+                copiarBtn.style.display = 'none'; // Ocultar el botón de copiar
+            }
         }
 
-        var total = precioUnitario * cantidad;
+        function copiarTexto() {
+            var mensajeElement = document.getElementById('mensaje-confirmacion');
 
-        const mensaje = `El precio por ${cantidad} ${tipoMaceta.toLowerCase()} es de S/ ${total.toFixed(2)}. ¡Incluye tarjeta personalizada, ${tipoMaceta.toLowerCase()}!`;
+            if (mensajeElement) {
+                var texto = mensajeElement.innerText; // Obtenemos el texto del párrafo
 
-        // Crear un párrafo para mostrar el mensaje
-        var mensajeP = document.createElement('p');
-        mensajeP.textContent = mensaje; // Establecer el texto del mensaje
-
-        // Limpiar cualquier mensaje previo
-        mensajeConfirmacion.innerHTML = '';
-        mensajeConfirmacion.appendChild(mensajeP); // Agregar el párrafo al contenedor
-
-        precioTotal.innerText = `S/ ${total.toFixed(2)}`;
-        document.getElementById('precio-total').style.display = 'block'; // Mostrar el precio total
-        copiarBtn.style.display = 'block'; // Mostrar el botón de copiar
-
-    } else {
-        document.getElementById('precio-total').style.display = 'none'; // Ocultar el precio si no se han seleccionado datos correctos
-        copiarBtn.style.display = 'none'; // Ocultar el botón de copiar
-    }
-  }
-
- function copiarTexto() {
-    var mensajeElement = document.getElementById('mensaje-confirmacion');
-
-    if (mensajeElement) {
-        var texto = mensajeElement.innerText; // Obtenemos el texto del párrafo
-
-        navigator.clipboard.writeText(texto).then(function() {
-            alert('¡Texto copiado al portapapeles!');
-        }).catch(function(err) {
-            alert('Error al copiar: ' + err);
-            console.error('Error al copiar:', err); // Depuración del error
-        });
-    } else {
-        console.error("No se encontró el elemento con el ID 'mensaje-confirmacion'.");
-    }
-}
-
+                navigator.clipboard.writeText(texto).then(function() {
+                    alert('¡Texto copiado al portapapeles!');
+                }).catch(function(err) {
+                    alert('Error al copiar: ' + err);
+                    console.error('Error al copiar:', err); // Depuración del error
+                });
+            } else {
+                console.error("No se encontró el elemento con el ID 'mensaje-confirmacion'.");
+            }
+        }
     </script>
 {% endblock %}
 

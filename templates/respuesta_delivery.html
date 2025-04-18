@@ -3,26 +3,27 @@
 {% block title %}Respuesta: Cotización de Delivery{% endblock %}
 
 {% block content %}
-    <h1>¡Cotiza tu Delivery!</h1>
-    <div class="alert alert-info">
+    <h1 style="font-size: 3rem; text-align: center;">¡Cotiza tu Delivery!</h1>
+
+    <div class="alert alert-info" style="font-size: 1.75rem;">
         <p>🚚 El costo de delivery varía según tu ubicación. Ingresa tu distrito y te diremos el costo.</p>
         <p>💬 Ingresa tu distrito y te ayudaremos a calcular el costo del delivery.</p>
     </div>
 
     <!-- Formulario para ingresar la ubicación -->
-    <div class="form-group">
+    <div class="form-group" style="font-size: 1.5rem;">
         <label for="distrito">Ingresa tu distrito:</label>
         <input type="text" class="form-control" id="distrito" name="distrito" placeholder="Ej. Miraflores, San Isidro, La Molina, etc." required>
     </div>
 
     <!-- Resultado con el precio del delivery -->
-    <div id="resultado" style="display:none;" class="alert alert-success mt-3">
+    <div id="resultado" style="display:none; font-size: 1.75rem;" class="alert alert-success mt-3">
         <span id="texto-delivery"></span>
     </div>
 
     <!-- Botón para copiar el texto, ahora debajo del resultado -->
     <div id="copiar-boton" style="display:none;">
-        <button class="btn btn-success mt-3" onclick="copiarTexto()">Copiar texto</button>
+        <button class="btn btn-success mt-3" onclick="copiarTexto()" style="font-size: 1.75rem; padding: 15px 30px;">Copiar texto</button>
     </div>
 
     <script>
@@ -81,3 +82,4 @@
         }
     </script>
 {% endblock %}
+
