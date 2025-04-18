@@ -1,9 +1,4 @@
-{% extends 'base.html' %}
 
-{% block title %}Cotizar Velas Tubo - Decogarideas{% endblock %}
-
-{% block content %}
-  <!-- Selección de tipo de vela tubo -->
   <div class="form-group">
       <label for="tipo_velas_tubo" class="h4" style="font-size: 3.75rem;">Tipo de Vela Tubo</label>
       <select class="form-control form-control-lg" id="tipo_velas_tubo" name="tipo_velas_tubo" onchange="calcularPrecio()">
@@ -13,4 +8,3 @@
           <option value="Velas con caja">Velas con caja</option>
       </select>
   </div>
-{% endblock %}

@@ -3,36 +3,50 @@
 {% block title %}Cotizar - Decogarideas{% endblock %}
 
 {% block content %}
-    <h1 style="font-size: 3rem; text-align: center;">¡Cotiza tu Producto!</h1>
+<h1 style="font-size: 3rem; text-align: center;">¡Cotiza tu Producto!</h1>
 
-    <!-- Selección de producto -->
-    <div class="form-group">
-        <label for="producto" class="h4" style="font-size: 3.75rem;">Producto</label>
-        <select class="form-control form-control-lg" id="producto" name="producto" onchange="mostrarOpciones()" required>
-            <option value="">Selecciona un producto</option>
-            <option value="macetas">Maceta</option>
-            <option value="macetas_de_loza">Maceta de loza</option>
-            <option value="macetas_de_arcilla">Maceta de arcilla</option>
-            <option value="velas">Vela</option>
-            <option value="velas_tubo">Vela tubo</option>
-        </select>
-    </div>
+<!-- Selección de producto -->
+<div class="form-group">
+    <label for="producto" class="h4" style="font-size: 3.75rem;">Producto</label>
+    <select class="form-control form-control-lg" id="producto" name="producto" onchange="mostrarOpciones()" required>
+        <option value="">Selecciona un producto</option>
+        <option value="macetas">Maceta</option>
+        <option value="macetas_de_loza">Maceta de loza</option>
+        <option value="macetas_de_arcilla">Maceta de arcilla</option>
+        <option value="velas">Vela</option>
+        <option value="velas_tubo">Vela tubo</option>
+    </select>
+</div>
 
-    <script>
-        function mostrarOpciones() {
-            var productoSeleccionado = document.getElementById('producto').value;
+<!-- Contenedor donde se carga dinámicamente el contenido del producto -->
+<div id="producto-seleccionado" class="mt-4" aria-live="polite"></div>
 
-            if (productoSeleccionado == "macetas") {
-                window.location.href = "/cotizar/macetas";  // Redirige a la ruta de Macetas
-            } else if (productoSeleccionado == "macetas_de_loza") {
-                window.location.href = "/cotizar/macetas_de_loza";  // Redirige a la ruta de Macetas de loza
-            } else if (productoSeleccionado == "macetas_de_arcilla") {
-                window.location.href = "/cotizar/macetas_de_arcilla";  // Redirige a la ruta de Macetas de arcilla
-            } else if (productoSeleccionado == "velas") {
-                window.location.href = "/cotizar/velas";  // Redirige a la ruta de Velas
-            } else if (productoSeleccionado == "velas_tubo") {
-                window.location.href = "/cotizar/velas_tubo";  // Redirige a la ruta de Velas tubo
-            }
+<script>
+    function mostrarOpciones() {
+        const productoSeleccionado = document.getElementById('producto').value;
+        const contenedor = document.getElementById('producto-seleccionado');
+
+        console.log("Producto seleccionado:", productoSeleccionado); // Depuración
+
+        if (!productoSeleccionado) {
+            contenedor.innerHTML = '';
+            return;
         }
-    </script>
+
+        contenedor.innerHTML = '<p>Cargando opciones...</p>';
+
+        fetch(`/cotizar_producto_seleccionado/${productoSeleccionado}`)
+            .then(response => {
+                if (!response.ok) throw new Error(`Error ${response.status}`);
+                return response.text();
+            })
+            .then(data => {
+                contenedor.innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error al cargar el contenido:', error);
+                contenedor.innerHTML = '<p>Error al cargar las opciones del producto. Por favor, intenta nuevamente.</p>';
+            });
+    }
+</script>
 {% endblock %}

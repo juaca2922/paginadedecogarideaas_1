@@ -1,9 +1,4 @@
-{% extends 'base.html' %}
-
-{% block title %}Cotizar Macetas de Arcilla - Decogarideas{% endblock %}
-
-{% block content %}
-  <!-- Selección de tipo de maceta de arcilla -->
+<!-- Selección de tipo de maceta de arcilla -->
   <div class="form-group">
       <label for="tipo_maceta" class="h4" style="font-size: 3.75rem;">Tipo de Maceta de Arcilla</label>
       <select class="form-control form-control-lg" id="tipo_maceta" name="tipo_maceta" onchange="calcularPrecio()">
@@ -12,4 +7,3 @@
           <option value="Corazón">Maceta de Corazón</option>  <!-- Tipo de maceta de corazón -->
       </select>
   </div>
-{% endblock %}
