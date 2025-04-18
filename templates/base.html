@@ -55,3 +55,53 @@
 </body>
 </html>
 
+<!-- ✅ CSS PERSONALIZADO -->
+<style>
+    /* Aumentar la altura de la barra de navegación en dispositivos móviles */
+    @media (max-width: 768px) {
+        .navbar {
+            height: 100px; /* Ajusta la altura de la navbar */
+        }
+
+        .navbar .navbar-brand {
+            font-size: 2rem; /* Aumenta el tamaño de la fuente de la marca */
+        }
+
+        .navbar .nav-link {
+            font-size: 1.5rem; /* Aumenta el tamaño de la fuente de los enlaces del menú */
+        }
+
+        .navbar-toggler {
+            padding: 10px; /* Aumenta el tamaño del botón del menú hamburguesa */
+        }
+    }
+
+    /* Aumentar la altura en pantallas grandes si lo deseas */
+    @media (min-width: 769px) {
+        .navbar {
+            height: 80px; /* Ajusta la altura en pantallas grandes */
+        }
+
+        .navbar .navbar-brand {
+            font-size: 2rem; /* Aumenta el tamaño de la marca en pantallas grandes */
+        }
+
+        .navbar .nav-link {
+            font-size: 1.5rem; /* Aumenta el tamaño de los enlaces en pantallas grandes */
+        }
+
+        .navbar-toggler {
+            padding: 10px; /* Aumenta el tamaño del botón de menú hamburguesa */
+        }
+    }
+
+    /* Aumentar el tamaño de los enlaces del menú desplegable */
+    .navbar .dropdown-item {
+        font-size: 1.25rem; /* Aumenta el tamaño de la fuente de los enlaces del dropdown */
+    }
+
+    /* Cambia el color del fondo del navbar */
+    .navbar-dark.bg-dark {
+        background-color: #343a40 !important;
+    }
+</style>
