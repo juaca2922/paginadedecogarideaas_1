@@ -3,11 +3,11 @@
 {% block title %}Respuesta Rápida: Hola, ¿Sigue disponible?{% endblock %}
 
 {% block content %}
-    <h1>Respuestas Rápidas</h1>
+    <h1 style="font-size: 2.5rem;">Respuestas Rápidas</h1>
 
     <!-- Respuesta al "Hola" -->
-    <div id="hola-text" class="container mt-4">
-        <div class="alert alert-info" id="texto-copiable" class="copiable-content">
+    <div id="hola-text" class="container mt-4" style="max-width: 100%; width: 95%; margin: 0 auto;">
+        <div class="alert alert-info" id="texto-copiable" class="copiable-content" style="font-size: 1.5rem;">
             <p> ✨ Hola ¡Haz de cada momento un recuerdo único! ✨</p>
             <p>En Decogarideas creamos recuerdos personalizados para cualquier ocasión. 🎉</p>
             <p>✨ Cotiza tus recuerdos a partir de 25 unidades y dale ese toque especial a tus eventos.</p>
@@ -16,7 +16,8 @@
             <p>https://instagram.com/decogarideas?igshid=MzRlODBiNWFlZA</p>
             <p>💌 ¡Contáctanos ahora para más información y pedidos! ❤️</p>
         </div>
-        <button class="btn btn-success mt-3" onclick="copiarTexto('texto-copiable')">Copiar texto</button>
+        <!-- Botón para copiar el texto con tamaño más grande -->
+        <button class="btn btn-success mt-3" onclick="copiarTexto('texto-copiable')" style="font-size: 1.5rem; padding: 15px 30px;">Copiar texto</button>
     </div>
 
     <script>
@@ -44,5 +45,4 @@
             });
         }
     </script>
-
 {% endblock %}
