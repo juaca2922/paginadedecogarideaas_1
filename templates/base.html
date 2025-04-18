@@ -22,10 +22,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Inicio <span class="sr-only">(actual)</span></a>
+                <a class="nav-link large-link" href="#">Inicio <span class="sr-only">(actual)</span></a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                <a class="nav-link dropdown-toggle text-white large-link" href="#" id="navbarDropdown" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Respuestas Rápidas
                 </a>
@@ -100,6 +100,11 @@
         .navbar-collapse {
             background-color: #343a40 !important; /* Asegura que el fondo se vea en el menú desplegable */
         }
+
+        /* Aumentar el tamaño de "Inicio" y "Respuestas Rápidas" */
+        .navbar .nav-item .large-link {
+            font-size: 1.75rem !important; /* Aumenta el tamaño de la fuente de "Inicio" y "Respuestas Rápidas" */
+        }
     }
 
     /* Aumentar la altura en pantallas grandes si lo deseas */
@@ -119,7 +124,18 @@
         .navbar-toggler {
             padding: 10px; /* Aumenta el tamaño del botón de menú hamburguesa */
         }
+
+        /* Aumentar el tamaño de "Inicio" y "Respuestas Rápidas" */
+        .navbar .nav-item .large-link {
+            font-size: 2.6rem !important; /* Aumenta el tamaño de la fuente de "Inicio" y "Respuestas Rápidas" */
+        }
     }
+       /* Aumentar el tamaño de las opciones del dropdown en pantallas grandes */
+       .navbar .dropdown-item {
+        font-size: 2.5rem !important; /* Aumenta el tamaño de las opciones del dropdown en pantallas grandes */
+        }
+    }
+
 
     /* Cambia el color del fondo del navbar */
     .navbar-dark.bg-dark {
