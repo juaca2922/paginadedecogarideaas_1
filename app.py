@@ -47,6 +47,8 @@ def cotizar_producto_seleccionado(producto):
         return render_template('fragments/velas_fragment.html')
     elif producto == 'velas_tubo':
         return render_template('fragments/velas_tubo_fragment.html')
+    elif producto == 'macetas_circulares':
+        return render_template('fragments/macetas_circulares_fragment.html')
     else:
         return "<p>Producto no encontrado</p>", 404
 

@@ -1,38 +1,37 @@
-const preciosPorCantidadMacetas = {
-    macetas: {
-        macetas: { 0: 6.00, 25: 4.80, 50: 4.20, 100: 4.00 },
-        macetas_con_yute: { 0: 6.50, 25: 5.30, 50: 4.70, 100: 4.50 },
-        macetas_con_caja: { 0: 7.50, 25: 6.80, 50: 6.20, 100: 6.00 },
-        macetas_con_sticker: { 0: 6.40, 25: 5.20, 50: 4.60, 100: 4.40 }
+const preciosPorCantidadCirculares = {
+    macetas_circulares: {
+        maceta_circular: { 0: 7.00, 25: 6.50, 50: 6.00, 100: 5.80 },
+        maceta_circular_girasol: { 0: 7.80, 25: 7.20, 50: 6.70, 100: 6.50 },
+        maceta_circular_caja: { 0: 8.00, 25: 7.50, 50: 7.00, 100: 6.80 },
+        maceta_circular_girasol_caja: { 0: 8.80, 25: 8.20, 50: 7.60, 100: 7.40 }
     }
 };
 
-const nombresVisiblesMacetas = {
-    macetas: {
-        macetas: "Macetita",
-        macetas_con_yute: "Macetita con yute",
-        macetas_con_caja: "Macetita con caja",
-        macetas_con_sticker: "Macetita con sticker"
+const nombresVisiblesCirculares = {
+    macetas_circulares: {
+        maceta_circular: "Maceta circular",
+        maceta_circular_girasol: "Maceta circular con girasol",
+        maceta_circular_caja: "Maceta circular con caja",
+        maceta_circular_girasol_caja: "Maceta circular con girasol y caja"
     }
 };
 
-// Función específica solo para MACETAS
-function conectarEventosMacetas() {
+function conectarEventosCirculares() {
     const intervalo = setInterval(() => {
         const tipo = document.getElementById('tipo_maceta');
         const cantidad = document.getElementById('cantidad');
 
         if (tipo && cantidad) {
-            tipo.addEventListener('change', mostrarPrecioMacetas);
-            cantidad.addEventListener('input', mostrarPrecioMacetas);
-            cantidad.addEventListener('change', mostrarPrecioMacetas);
-            mostrarPrecioMacetas();
+            tipo.addEventListener('change', mostrarPrecioCirculares);
+            cantidad.addEventListener('input', mostrarPrecioCirculares);
+            cantidad.addEventListener('change', mostrarPrecioCirculares);
+            mostrarPrecioCirculares();
             clearInterval(intervalo);
         }
     }, 50);
 }
 
-function mostrarPrecioMacetas() {
+function mostrarPrecioCirculares() {
     const tipoSelect = document.getElementById('tipo_maceta');
     const cantidadInput = document.getElementById('cantidad');
     const precioElement = document.getElementById('precio-macetas');
@@ -44,14 +43,14 @@ function mostrarPrecioMacetas() {
     const producto = tipoSelect.dataset.producto;
     const cantidad = parseInt(cantidadInput.value);
 
-    if (!tipo || isNaN(cantidad) || cantidad <= 0 || !preciosPorCantidadMacetas[producto]?.[tipo]) {
+    if (!tipo || isNaN(cantidad) || cantidad <= 0 || !preciosPorCantidadCirculares[producto]?.[tipo]) {
         precioElement.style.display = 'none';
         resumenElement.style.display = 'none';
         return;
     }
 
     let precioUnitario = 0;
-    const escalas = preciosPorCantidadMacetas[producto][tipo];
+    const escalas = preciosPorCantidadCirculares[producto][tipo];
 
     if (cantidad <= 24) {
         precioUnitario = escalas[0];
@@ -64,7 +63,7 @@ function mostrarPrecioMacetas() {
     }
 
     const precioTotal = (precioUnitario * cantidad).toFixed(2);
-    const tipoNombre = nombresVisiblesMacetas[producto][tipo];
+    const tipoNombre = nombresVisiblesCirculares[producto][tipo];
 
     precioElement.innerHTML = `
         <strong>Precio Unitario:</strong> S/ ${precioUnitario.toFixed(2)}<br>
@@ -78,7 +77,7 @@ function mostrarPrecioMacetas() {
 ✨ El precio por ${cantidad} unidades de ${tipoNombre} es de S/ ${Number(precioTotal).toLocaleString('es-PE', { minimumFractionDigits: 2 })} soles.
 
 Cada una incluye:
-🪴 Macetita decorada
+🪴 Maceta decorada
 🌱 Suculenta natural
 💌 Tarjetita personalizada con el nombre y mensaje que desees
 
@@ -88,7 +87,7 @@ La personalización se coordina luego de realizar el abono del pedido.
         </div>
 
         <button class="btn btn-success mt-3"
-                onclick="copiarResumenMacetas()"
+                onclick="copiarResumenCirculares()"
                 style="font-size: 3.5rem; padding: 15px 30px;">
             📋 Copiar mensaje
         </button>
@@ -98,7 +97,7 @@ La personalización se coordina luego de realizar el abono del pedido.
     resumenElement.style.display = 'block';
 }
 
-function copiarResumenMacetas() {
+function copiarResumenCirculares() {
     const contenedor = document.getElementById("texto-cotizacion");
     const temp = document.createElement("textarea");
     temp.value = contenedor.innerText.trim();
