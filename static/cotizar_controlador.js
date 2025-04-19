@@ -23,6 +23,9 @@ function mostrarOpciones() {
             } else if (producto === 'macetas_circulares') {
                 conectarEventosCirculares();
             }
+            else if (producto === 'macetas_de_loza') {
+                conectarEventosLoza();
+            }
         })
         .catch(err => {
             console.error('Error al cargar el fragmento:', err);

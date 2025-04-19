@@ -1,10 +1,15 @@
-
-  <div class="form-group">
-      <label for="tipo_maceta_loza" class="h4" style="font-size: 3.75rem;">Tipo de Maceta de Loza</label>
-      <select class="form-control form-control-lg" id="tipo_maceta_loza" name="tipo_maceta_loza" onchange="calcularPrecio()">
-          <option value="">Selecciona el tipo de maceta de loza</option>
-          <option value="Palomas">Palomas</option>
-          <option value="Redondas">Redondas</option>
-          <option value="Octogonales">Octogonales</option>
-      </select>
-  </div>
+<div class="form-group">
+    <label for="tipo_maceta" class="h4" style="font-size: 3.5rem;">Tipo de Maceta de Loza</label>
+    <select class="form-control"
+            id="tipo_maceta"
+            name="tipo_maceta"
+            data-producto="macetas_de_loza"
+            style="font-size: 2.5rem; height: 80px;">
+        <option value="">Selecciona el tipo de maceta de loza</option>
+        <option value="maceta_loza_redonda">Maceta de loza redonda</option>
+        <option value="maceta_loza_redonda_con_caja">Maceta de loza redonda con caja</option>
+        <option value="maceta_loza_octogonal">Maceta de loza octogonal</option>
+        <option value="maceta_loza_paloma">Maceta de loza paloma</option>
+        <option value="maceta_loza_paloma_con_caja">Maceta de loza paloma con caja </option>
+    </select>
+</div>
