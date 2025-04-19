@@ -122,7 +122,7 @@ function mostrarPrecio() {
 
 resumenElement.innerHTML = `
     <div id="texto-cotizacion">
-        <pre style="white-space: pre-wrap; font-family: inherit; font-size: 1.8rem;">
+        <pre style="white-space: pre-wrap; font-family: inherit; font-size: 3rem;">
 ✨ El precio por ${cantidad} unidades de ${tipoNombre} es de S/ ${Number(precioTotal).toLocaleString('es-PE', { minimumFractionDigits: 2 })} soles.
 
 Cada una incluye:
