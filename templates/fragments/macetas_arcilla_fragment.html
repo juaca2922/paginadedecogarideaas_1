@@ -1,9 +1,16 @@
-<!-- Selección de tipo de maceta de arcilla -->
-  <div class="form-group">
-      <label for="tipo_maceta" class="h4" style="font-size: 3.75rem;">Tipo de Maceta de Arcilla</label>
-      <select class="form-control form-control-lg" id="tipo_maceta" name="tipo_maceta" onchange="calcularPrecio()">
-          <option value="">Selecciona el tipo de maceta</option>
-          <option value="Cilíndrica">Cilíndrica</option>  <!-- Tipo de maceta cilíndrica -->
-          <option value="Corazón">Maceta de Corazón</option>  <!-- Tipo de maceta de corazón -->
-      </select>
-  </div>
+<div class="form-group">
+    <label for="tipo_maceta" class="h4" style="font-size: 3.5rem;">Tipo de Maceta de Arcilla</label>
+    <select class="form-control"
+            id="tipo_maceta"
+            name="tipo_maceta"
+            data-producto="macetas_de_arcilla"
+            style="font-size: 2.5rem; height: 80px;">
+        <option value="">Selecciona el tipo de maceta</option>
+        <option value="maceta_arcilla">Maceta de Arcilla</option>
+        <option value="maceta_arcilla_con_yute">Maceta de Arcilla con Yute</option>
+        <option value="maceta_arcilla_con_caja">Maceta de Arcilla con Caja</option>
+        <option value="maceta_arcilla_corazon">Maceta de Corazón</option>
+        <option value="maceta_arcilla_corazon_con_caja">Maceta de Arcilla de Corazón con Caja</option>
+    </select>
+</div>
+

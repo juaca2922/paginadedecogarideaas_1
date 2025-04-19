@@ -22,9 +22,10 @@ function mostrarOpciones() {
                 conectarEventosMacetas();
             } else if (producto === 'macetas_circulares') {
                 conectarEventosCirculares();
-            }
-            else if (producto === 'macetas_de_loza') {
+            } else if (producto === 'macetas_de_loza') {
                 conectarEventosLoza();
+            } else if (producto === 'macetas_de_arcilla') {
+                conectarEventosArcilla(); // Asegúrate de que esta función esté definida
             }
         })
         .catch(err => {
