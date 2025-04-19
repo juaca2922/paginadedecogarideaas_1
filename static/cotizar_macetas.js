@@ -135,7 +135,11 @@ La personalización se coordina luego de realizar el abono del pedido.
         </pre>
     </div>
 
-    <button class="btn btn-outline-primary mt-3" style="font-size: 1.8rem; padding: 1rem 2rem;" onclick="copiarResumen()">📋 Copiar mensaje</button>
+<button class="btn btn-success mt-3"
+        onclick="copiarResumen()"
+        style="font-size: 3.5rem; padding: 15px 30px;">
+    📋 Copiar mensaje
+</button>
     <div id="mensaje-copiado" class="text-success mt-2" style="display:none;">¡Texto copiado!</div>
 `;
 
