@@ -5,25 +5,116 @@
 {% block content %}
 <h1 style="font-size: 3rem; text-align: center;">¡Cotiza tu Producto!</h1>
 
-<!-- Selección de producto -->
 <div class="form-group">
-    <label for="producto" class="h4" style="font-size: 3.5rem;">Producto</label>
-    <select class="form-control"
-            id="producto"
-            name="producto"
-            onchange="mostrarOpciones()"
-            required
-            style="font-size: 2.5rem; height: 80px;">
+    <label for="producto_seleccionado" class="h4" style="font-size: 3.5rem;">Selecciona un producto</label>
+    <select id="producto_seleccionado" name="producto" class="form-control" style="font-size: 2.5rem; height: 80px;">
         <option value="">Selecciona un producto</option>
         <option value="macetas">Maceta</option>
-        <option value="macetas_circulares">Maceta circular</option>
-        <option value="macetas_de_loza">Maceta de loza</option>
-        <option value="macetas_de_arcilla">Macetas de Arcilla</option>
+        <option value="macetas_redondas">Maceta redonda</option> <!-- Cambiado aquí -->
+        <option value="macetas_loza">Maceta de loza</option>
+        <option value="macetas_arcilla">Macetas de Arcilla</option>
+        <option value="velas">Velas</option>
+        <option value="velas_tubo">Velas tubo</option>
     </select>
 </div>
 
-<!-- Contenedor donde se carga dinámicamente el contenido del producto -->
-<div id="producto-seleccionado" class="mt-4" aria-live="polite"></div>
+<!-- Campos de producto que se deben mostrar u ocultar -->
+<div id="producto-container">
+    <!-- Macetas -->
+    <div class="form-group" id="tipo_macetas_container" style="display:none;">
+        <label for="tipo_macetas" class="h4" style="font-size: 3.5rem;">Tipo de Maceta</label>
+        <select class="form-control"
+                id="tipo_macetas"
+                name="tipo_macetas"
+                style="font-size: 2.5rem; height: 80px;">
+            <option value="">Selecciona el tipo de maceta</option>
+            <option value="macetas">Macetita</option>
+            <option value="macetas_con_yute">Macetita con yute</option>
+            <option value="macetas_con_caja">Macetita con caja</option>
+            <option value="macetas_con_sticker">Macetita con sticker</option>
+        </select>
+    </div>
+
+    <!-- Macetas Circulares -->
+    <div class="form-group" id="tipo_macetas_redondas_container" style="display:none;">
+        <label for="tipo_macetas_redondas" class="h4" style="font-size: 3.5rem;">Tipo de Maceta Redonda</label> <!-- Cambiado aquí -->
+        <select class="form-control"
+                id="tipo_macetas_redondas"
+                name="tipo_macetas_redondas"
+                style="font-size: 2.5rem; height: 80px;">
+            <option value="">Selecciona el tipo de maceta redonda</option> <!-- Cambiado aquí -->
+            <option value="macetas_redondas">Maceta redonda básica</option> <!-- Cambiado aquí -->
+            <option value="macetas_redondas_con_girasol">Maceta redonda con girasol</option> <!-- Cambiado aquí -->
+            <option value="macetas_redondas_con_caja">Maceta redonda con caja</option> <!-- Cambiado aquí -->
+            <option value="macetas_redondas_con_girasol_y_caja">Maceta redonda con girasol y caja</option> <!-- Cambiado aquí -->
+        </select>
+    </div>
+
+    <!-- Macetas de Arcilla -->
+    <div class="form-group" id="tipo_macetas_arcilla_container" style="display:none;">
+        <label for="tipo_macetas_arcilla" class="h4" style="font-size: 3.5rem;">Tipo de Maceta de Arcilla</label>
+        <select class="form-control"
+                id="tipo_macetas_arcilla"
+                name="tipo_macetas_arcilla"
+                style="font-size: 2.5rem; height: 80px;">
+            <option value="">Selecciona el tipo de maceta de arcilla</option>
+            <option value="macetas_arcilla">Maceta de arcilla</option>
+            <option value="macetas_arcilla_con_yute">Maceta de arcilla con yute</option>
+            <option value="macetas_arcilla_con_caja">Maceta de arcilla con caja</option>
+            <option value="macetas_arcilla_corazon">Maceta de arcilla de corazón</option>
+            <option value="macetas_arcilla_corazon_con_caja">Maceta de arcilla de corazón con caja</option>
+        </select>
+    </div>
+
+    <!-- Macetas de Loza -->
+    <div class="form-group" id="tipo_macetas_loza_container" style="display:none;">
+        <label for="tipo_macetas_loza" class="h4" style="font-size: 3.5rem;">Tipo de Maceta de Loza</label>
+        <select class="form-control"
+                id="tipo_macetas_loza"
+                name="tipo_macetas_loza"
+                style="font-size: 2.5rem; height: 80px;">
+            <option value="">Selecciona el tipo de maceta de loza</option>
+            <option value="macetas_loza_redonda">Maceta loza redonda</option>
+            <option value="macetas_loza_redonda_con_caja">Maceta loza redonda con caja</option>
+            <option value="macetas_loza_octogonal">Maceta loza octogonal</option>
+            <option value="macetas_loza_paloma">Maceta loza paloma</option>
+            <option value="macetas_loza_paloma_con_caja">Maceta loza paloma con caja</option>
+        </select>
+    </div>
+
+    <!-- Velas -->
+    <div class="form-group" id="tipo_velas_container" style="display:none;">
+        <label for="tipo_velas" class="h4" style="font-size: 3.5rem;">Tipo de Vela</label>
+        <select class="form-control"
+                id="tipo_velas"
+                name="tipo_velas"
+                style="font-size: 2.5rem; height: 80px;">
+            <option value="">Selecciona el tipo de vela</option>
+            <option value="vela">Vela</option>
+            <option value="vela_con_yute">Vela con yute</option>
+            <option value="vela_con_yute_y_soguilla_verde">Vela con yute y soguilla verde</option>
+            <option value="vela_mas_empaque">Vela más empaque</option>
+            <option value="vela_con_yute_mas_empaque">Vela con yute más empaque</option>
+            <option value="vela_con_caja">Vela con caja</option>
+            <option value="vela_con_caja_y_yute">Vela con caja y yute</option>
+        </select>
+    </div>
+
+    <!-- Velas Tubo -->
+    <div class="form-group" id="tipo_velas_tubo_container" style="display:none;">
+        <label for="tipo_velas_tubo" class="h4" style="font-size: 3.5rem;">Tipo de Vela Tubo</label>
+        <select class="form-control"
+                id="tipo_velas_tubo"
+                name="tipo_velas_tubo"
+                style="font-size: 2.5rem; height: 80px;">
+            <option value="">Selecciona el tipo de vela tubo</option>
+            <option value="velas_tubo">Vela tubo</option>
+            <option value="velas_tubo_mas_empaque">Vela tubo más empaque</option>
+            <option value="velas_tubo_con_angelito">Vela tubo con angelito</option>
+            <option value="velas_tubo_con_angelito_mas_empaque">Vela tubo con angelito más empaque</option>
+        </select>
+    </div>
+</div>
 
 <!-- Campo de cantidad -->
 <div class="form-group mt-4" id="cantidad-container" style="display:none;">
@@ -34,17 +125,80 @@
            placeholder="Ingresa la cantidad" min="1" required>
 </div>
 
-<!-- Mensaje de precios -->
-<p class="mt-3" id="precio-macetas" style="display:none; font-size: 2rem;"></p>
-<p class="mt-2 text-info font-weight-bold" id="resumen-cotizacion" style="display:none; font-size: 3rem;"></p>
+<!-- Mostrar precio y resumen -->
+<p id="precio" style="display:none; font-size: 3rem;"></p>
+<p id="resumen" style="display:none; font-size: 3rem;"></p>
+<button id="copiarResumen"
+        class="btn btn-success mt-4"
+        style="font-size: 2.5rem; padding: 15px 30px; display: none;">
+    📋 Copiar texto
+</button>
 
-<!-- JS externos -->
-<script src="{{ url_for('static', filename='cotizar_macetas.js') }}"></script>
-<script src="{{ url_for('static', filename='cotizar_macetas_circulares.js') }}"></script>
-<script src="{{ url_for('static', filename='cotizar_macetas_loza.js') }}"></script>
-<script src="{{ url_for('static', filename='cotizar_macetas_arcilla.js') }}"></script>
 
-<script src="{{ url_for('static', filename='cotizar_controlador.js') }}"></script>
+<script src="{{ url_for('static', filename='js/config/precios_y_nombres.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/cotizar_producto.js') }}" defer></script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    function actualizarOpciones() {
+        var productoSeleccionado = document.getElementById("producto_seleccionado").value;
+        console.log("Producto seleccionado:", productoSeleccionado);
+
+        // Mostrar campo cantidad
+        document.getElementById("cantidad-container").style.display = productoSeleccionado !== "" ? "block" : "none";
+
+        // Ocultar todos los selects de tipo
+        document.getElementById("tipo_macetas_container").style.display = "none";
+        document.getElementById("tipo_macetas_redondas_container").style.display = "none";
+        document.getElementById("tipo_macetas_arcilla_container").style.display = "none";
+        document.getElementById("tipo_macetas_loza_container").style.display = "none";
+        document.getElementById("tipo_velas_container").style.display = "none";
+        document.getElementById("tipo_velas_tubo_container").style.display = "none";
+
+        // Mostrar el que corresponde
+        if (productoSeleccionado === "macetas") {
+            document.getElementById("tipo_macetas_container").style.display = "block";
+        } else if (productoSeleccionado === "macetas_redondas") {
+            document.getElementById("tipo_macetas_redondas_container").style.display = "block";
+        } else if (productoSeleccionado === "macetas_arcilla") {
+            document.getElementById("tipo_macetas_arcilla_container").style.display = "block";
+        } else if (productoSeleccionado === "macetas_loza") {
+            document.getElementById("tipo_macetas_loza_container").style.display = "block";
+        } else if (productoSeleccionado === "velas") {
+            document.getElementById("tipo_velas_container").style.display = "block";
+        } else if (productoSeleccionado === "velas_tubo") {
+            document.getElementById("tipo_velas_tubo_container").style.display = "block";
+        }
+
+        cotizar_producto(productoSeleccionado);
+    }
+
+    // Eventos
+    document.getElementById("producto_seleccionado").addEventListener("change", actualizarOpciones);
+    document.getElementById("cantidad").addEventListener("input", function() {
+        cotizar_producto(document.getElementById("producto_seleccionado").value);
+    });
+
+    // 🔽 COPIAR resumen sin “precio por unidad”
+    document.getElementById("copiarResumen").addEventListener("click", function () {
+        const resumen = document.getElementById("resumen").innerText;
+
+        const resumenFiltrado = resumen
+            .split('\n')
+            .filter(linea => !linea.startsWith("Precio por unidad"))
+            .join('\n')
+            .trim();
+
+        navigator.clipboard.writeText(resumenFiltrado).then(() => {
+            alert("Resumen copiado al portapapeles ✅");
+        }).catch(err => {
+            alert("Error al copiar el resumen ❌");
+            console.error(err);
+        });
+    });
+});
+</script>
 
 {% endblock %}
+
+
