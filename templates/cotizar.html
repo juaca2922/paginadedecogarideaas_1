@@ -134,7 +134,6 @@
     📋 Copiar texto
 </button>
 
-
 <script src="{{ url_for('static', filename='js/config/precios_y_nombres.js') }}" defer></script>
 <script src="{{ url_for('static', filename='js/cotizar_producto.js') }}" defer></script>
 
@@ -148,47 +147,65 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("cantidad-container").style.display = productoSeleccionado !== "" ? "block" : "none";
 
         // Ocultar todos los selects de tipo
-        document.getElementById("tipo_macetas_container").style.display = "none";
-        document.getElementById("tipo_macetas_redondas_container").style.display = "none";
-        document.getElementById("tipo_macetas_arcilla_container").style.display = "none";
-        document.getElementById("tipo_macetas_loza_container").style.display = "none";
-        document.getElementById("tipo_velas_container").style.display = "none";
-        document.getElementById("tipo_velas_tubo_container").style.display = "none";
+        const tipoContainers = [
+            "tipo_macetas_container",
+            "tipo_macetas_redondas_container",
+            "tipo_macetas_arcilla_container",
+            "tipo_macetas_loza_container",
+            "tipo_velas_container",
+            "tipo_velas_tubo_container"
+        ];
 
-        // Mostrar el que corresponde
-        if (productoSeleccionado === "macetas") {
-            document.getElementById("tipo_macetas_container").style.display = "block";
-        } else if (productoSeleccionado === "macetas_redondas") {
-            document.getElementById("tipo_macetas_redondas_container").style.display = "block";
-        } else if (productoSeleccionado === "macetas_arcilla") {
-            document.getElementById("tipo_macetas_arcilla_container").style.display = "block";
-        } else if (productoSeleccionado === "macetas_loza") {
-            document.getElementById("tipo_macetas_loza_container").style.display = "block";
-        } else if (productoSeleccionado === "velas") {
-            document.getElementById("tipo_velas_container").style.display = "block";
-        } else if (productoSeleccionado === "velas_tubo") {
-            document.getElementById("tipo_velas_tubo_container").style.display = "block";
+        // Ocultar todos los selects de tipo
+        tipoContainers.forEach(id => {
+            document.getElementById(id).style.display = "none";
+        });
+
+        // Mostrar el select correspondiente al producto seleccionado
+        switch (productoSeleccionado) {
+            case "macetas":
+                document.getElementById("tipo_macetas_container").style.display = "block";
+                break;
+            case "macetas_redondas":
+                document.getElementById("tipo_macetas_redondas_container").style.display = "block";
+                break;
+            case "macetas_arcilla":
+                document.getElementById("tipo_macetas_arcilla_container").style.display = "block";
+                break;
+            case "macetas_loza":
+                document.getElementById("tipo_macetas_loza_container").style.display = "block";
+                break;
+            case "velas":
+                document.getElementById("tipo_velas_container").style.display = "block";
+                break;
+            case "velas_tubo":
+                document.getElementById("tipo_velas_tubo_container").style.display = "block";
+                break;
         }
 
+        // Llamar a la función para actualizar el precio y el resumen
         cotizar_producto(productoSeleccionado);
     }
 
-    // Eventos
+    // Asociar eventos
     document.getElementById("producto_seleccionado").addEventListener("change", actualizarOpciones);
     document.getElementById("cantidad").addEventListener("input", function() {
-        cotizar_producto(document.getElementById("producto_seleccionado").value);
+        const productoSeleccionado = document.getElementById("producto_seleccionado").value;
+        cotizar_producto(productoSeleccionado);
     });
 
-    // 🔽 COPIAR resumen sin “precio por unidad”
+    // Función para copiar el resumen sin "Precio por unidad"
     document.getElementById("copiarResumen").addEventListener("click", function () {
         const resumen = document.getElementById("resumen").innerText;
 
+        // Filtrar la línea "Precio por unidad" para copiar al portapapeles sin modificar el DOM
         const resumenFiltrado = resumen
             .split('\n')
             .filter(linea => !linea.startsWith("Precio por unidad"))
             .join('\n')
             .trim();
 
+        // Copiar al portapapeles
         navigator.clipboard.writeText(resumenFiltrado).then(() => {
             alert("Resumen copiado al portapapeles ✅");
         }).catch(err => {
@@ -197,7 +214,74 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+// Función principal para calcular y mostrar precio y resumen
+function cotizar_producto(productoSeleccionado) {
+    const cantidad = parseInt(document.getElementById("cantidad").value);
+
+    if (isNaN(cantidad) || cantidad < 1) {
+        // Si la cantidad es inválida, ocultar los elementos
+        document.getElementById("precio").style.display = "none";
+        document.getElementById("resumen").style.display = "none";
+        document.getElementById("copiarResumen").style.display = "none";
+        return;
+    }
+
+    // Actualizar el precio
+    actualizar_precio(productoSeleccionado, cantidad);
+
+    // Actualizar el resumen
+    actualizar_resumen(productoSeleccionado, cantidad);
+
+    // Asegurarse de mostrar el botón de copiar
+    document.getElementById("copiarResumen").style.display = "inline-block";
+}
+
+// Función para actualizar el precio
+function actualizar_precio(productoSeleccionado, cantidad) {
+    let tipoSeleccionado = document.getElementById('tipo_' + productoSeleccionado).value;
+    let precio = preciosPorCantidad[productoSeleccionado][tipoSeleccionado];
+    let precioFinal = 0;
+
+    if (cantidad >= 100) {
+        precioFinal = precio[100];
+    } else if (cantidad >= 50) {
+        precioFinal = precio[50];
+    } else if (cantidad >= 25) {
+        precioFinal = precio[25];
+    } else {
+        precioFinal = precio[0];
+    }
+
+    let precioPorUnidad = precioFinal.toFixed(2);
+    let totalPrecio = (precioFinal * cantidad).toFixed(2);
+    const nombreVisible = nombresVisibles[productoSeleccionado]?.[tipoSeleccionado] || tipoSeleccionado;
+
+    const mensajePrecio = `Precio por unidad: S/ ${precioPorUnidad}
+✨ El precio por ${cantidad} unidades de ${nombreVisible} es de S/ ${totalPrecio}`;
+
+    // Mostrar precio en la interfaz
+    document.getElementById("precio").innerText = mensajePrecio;
+    document.getElementById("precio").style.display = "block";  // Asegurarse de mostrarlo
+}
+
+// Función para actualizar el resumen
+function actualizar_resumen(productoSeleccionado, cantidad) {
+    // Limpiar contenido previo de #resumen
+    const resumenElemento = document.getElementById("resumen");
+    resumenElemento.innerText = "";
+
+    // Resumen del producto
+    const resumen = textosResumen[productoSeleccionado] || "";
+    const mensajeFinal = "\n\nLa personalización se coordina luego de realizar el abono del pedido.\n¿Te gustaría hacer tu pedido o ver algunos modelos? ¡Estoy para ayudarte! 💬";
+
+    const resumenCompleto = mensajePrecio + "\n\n" + resumen.trim() + mensajeFinal;
+    resumenElemento.innerText = resumenCompleto;
+    resumenElemento.style.display = "block";  // Asegurarse de mostrarlo
+}
 </script>
+
+
 
 {% endblock %}
 

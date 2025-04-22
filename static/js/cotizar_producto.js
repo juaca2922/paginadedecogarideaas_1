@@ -1,17 +1,6 @@
-function cotizar_producto(productoSeleccionado) {
-    // Obtener el tipo y cantidad
+// Función para actualizar el precio
+function actualizar_precio(productoSeleccionado, cantidad) {
     let tipoSeleccionado = document.getElementById('tipo_' + productoSeleccionado).value;
-    let cantidad = parseInt(document.getElementById("cantidad").value);
-
-    // Validar cantidad
-    if (isNaN(cantidad) || cantidad < 1) {
-        document.getElementById("precio").style.display = "none";
-        document.getElementById("resumen").style.display = "none";
-        document.getElementById("copiarResumen").style.display = "none";
-        return;
-    }
-
-    // Precio escalonado
     let precio = preciosPorCantidad[productoSeleccionado][tipoSeleccionado];
     let precioFinal = 0;
 
@@ -25,28 +14,76 @@ function cotizar_producto(productoSeleccionado) {
         precioFinal = precio[0];
     }
 
-    // Calcular precios
     let precioPorUnidad = precioFinal.toFixed(2);
     let totalPrecio = (precioFinal * cantidad).toFixed(2);
     const nombreVisible = nombresVisibles[productoSeleccionado]?.[tipoSeleccionado] || tipoSeleccionado;
 
-    // Mensaje final con formato
     const mensajePrecio = `Precio por unidad: S/ ${precioPorUnidad}
 ✨ El precio por ${cantidad} unidades de ${nombreVisible} es de S/ ${totalPrecio}`;
 
-    // Mostrar precio
-    document.getElementById("precio").innerText = mensajePrecio;
-    document.getElementById("precio").style.display = "block";
+    // Limpiar el contenido anterior de #precio
+    const precioElemento = document.getElementById("precio");
+    precioElemento.innerText = "";  // Limpiar antes de actualizar
+    precioElemento.innerText = mensajePrecio;
+    precioElemento.style.display = "block";  // Asegurarse de mostrarlo
+
+    return mensajePrecio; // Retornar el mensajePrecio para usarlo en la función resumen
+}
+
+// Función para actualizar el resumen
+function actualizar_resumen(mensajePrecio, productoSeleccionado, cantidad) {
+    const resumenElemento = document.getElementById("resumen");
+
+    // Limpiar contenido previo de #resumen
+    resumenElemento.innerText = ""; // Limpiar el contenido de #resumen
 
     // Resumen del producto
     const resumen = textosResumen[productoSeleccionado] || "";
-    const mensajeFinal = "\n\nLa personalización se coordina luego de realizar el abono del pedido.\n¿Te gustaría hacer tu pedido o ver algunos modelos? ¡Estoy para ayudarte! 💬";
+    const mensajeFinal = "\n\nLa personalización se coordina luego de realizar el abono del pedido.\n¿Hay algo en lo que pueda ayudarte o alguna duda que tengas? 😊💬";
 
     const resumenCompleto = mensajePrecio + "\n\n" + resumen.trim() + mensajeFinal;
+    resumenElemento.innerText = resumenCompleto;
+    resumenElemento.style.display = "block";  // Asegurarse de mostrarlo
+}
 
-    document.getElementById("resumen").innerText = resumenCompleto;
-    document.getElementById("resumen").style.display = "block";
+// Función para copiar el resumen (sin "Precio por unidad")
+function copiar_resumen() {
+    const resumen = document.getElementById("resumen").innerText;
 
-    // Mostrar botón copiar
+    // Filtrar la línea "Precio por unidad" solo para copiar al portapapeles sin modificar el DOM
+    const resumenFiltrado = resumen
+        .split('\n')
+        .filter(linea => !linea.startsWith("Precio por unidad"))
+        .join('\n')
+        .trim();
+
+    // Copiar al portapapeles
+    navigator.clipboard.writeText(resumenFiltrado).then(() => {
+        alert("Resumen copiado al portapapeles ✅");
+    }).catch(err => {
+        alert("Error al copiar el resumen ❌");
+        console.error(err);
+    });
+}
+
+// Función principal que se ejecuta cuando el producto o la cantidad cambia
+function cotizar_producto(productoSeleccionado) {
+    const cantidad = parseInt(document.getElementById("cantidad").value);
+
+    if (isNaN(cantidad) || cantidad < 1) {
+        // Si la cantidad es inválida, ocultar los elementos
+        document.getElementById("precio").style.display = "none";
+        document.getElementById("resumen").style.display = "none";
+        document.getElementById("copiarResumen").style.display = "none";
+        return;
+    }
+
+    // Obtener el mensaje de precio
+    const mensajePrecio = actualizar_precio(productoSeleccionado, cantidad);
+
+    // Actualizar el resumen, pasándole el mensaje de precio
+    actualizar_resumen(mensajePrecio, productoSeleccionado, cantidad);
+
+    // Asegurarse de mostrar el botón de copiar
     document.getElementById("copiarResumen").style.display = "inline-block";
 }

@@ -98,44 +98,44 @@ const nombresVisibles = {
 const textosResumen = {
     // Macetas
     macetas: `
-Cada una incluye:
+Incluye:
 🪴 Macetita decorada
 🌱 Suculenta natural
 💌 Tarjetita personalizada con el nombre y mensaje que desees`,
 
     // Macetas Redondas
     macetas_redondas: `
-Cada una incluye:
+Incluye:
 🪴 Maceta redonda decorada
 🌱 Suculenta natural
 💌 Tarjetita personalizada con el nombre y mensaje que desees`,
 
     // Macetas de Loza
     macetas_loza: `
-Cada una incluye:
-🏺 Maceta de loza
+Incluye:
+🏺 Maceta de loza decorada
 🌱 Planta natural
-🎨 Decoración personalizada`,
+💌 Tarjetita personalizada con el nombre y mensaje que desees`,
 
     // Macetas de Arcilla
     macetas_arcilla: `
-Cada una incluye:
+Incluye:
 🏺 Maceta de arcilla
 🌱 Planta natural
-🎨 Decoración personalizada`,
+💌 Tarjetita personalizada con el nombre y mensaje que desees`,
 
     // Velas
     velas: `
-Cada una incluye:
+Incluye:
 🕯️ Vela decorada
 🌿 Detalles personalizados
-🎁 Empaque especial`,
+💌 Tarjetita personalizada con el nombre y mensaje que desees`,
 
     // Velas Tubo
     velas_tubo: `
-Cada una incluye:
+Incluye:
 🕯️ Vela tubo decorada
 🌿 Detalles personalizados
-🎁 Empaque especial`,
+💌 Tarjetita personalizada con el nombre y mensaje que desees`,
 };
 
