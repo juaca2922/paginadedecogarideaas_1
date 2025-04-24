@@ -52,45 +52,45 @@ const preciosPorCantidad = {
 // Configuración de nombres visibles para cada producto
 const nombresVisibles = {
     macetas: {
-        macetas: "Macetita",
-        macetas_con_yute: "Macetita con yute",
-        macetas_con_caja: "Macetita con caja",
-        macetas_con_sticker: "Macetita con sticker"
+        macetas: "macetitas",
+        macetas_con_yute: "macetitas con yute",
+        macetas_con_caja: "macetitas con caja",
+        macetas_con_sticker: "macetitas con sticker"
     },
     macetas_redondas: {
-        macetas_redondas: "Maceta redonda",
-        macetas_redondas_con_girasol: "Maceta redonda con girasol",
-        macetas_redondas_con_caja: "Maceta redonda con caja",
-        macetas_redondas_con_girasol_y_caja: "Maceta redonda con girasol y caja"
+        macetas_redondas: "macetas redondas",
+        macetas_redondas_con_girasol: "macetas redondas con girasol",
+        macetas_redondas_con_caja: "maceta redondas con caja",
+        macetas_redondas_con_girasol_y_caja: "macetas redondas con girasol y caja"
     },
     macetas_loza: {
-        macetas_loza_redonda: "Macetas de loza redonda",
-        macetas_loza_redonda_con_caja: "Macetas de loza redonda con caja",
-        macetas_loza_octogonal: "Macetas de loza octogonal",
-        macetas_loza_paloma: "Macetas de loza paloma",
-        macetas_loza_paloma_con_caja: "Macetas de loza paloma con caja"
+        macetas_loza_redonda: "macetas de loza redonda",
+        macetas_loza_redonda_con_caja: "macetas de loza redonda con caja",
+        macetas_loza_octogonal: "macetas de loza octogonal",
+        macetas_loza_paloma: "macetas de loza paloma",
+        macetas_loza_paloma_con_caja: "macetas de loza paloma con caja"
     },
     macetas_arcilla: {
-        macetas_arcilla: "Maceta de arcilla",
-        macetas_arcilla_con_yute: "Maceta de arcilla con yute",
-        macetas_arcilla_con_caja: "Maceta de arcilla con caja",
-        macetas_arcilla_corazon: "Maceta de arcilla de corazón",
-        macetas_arcilla_corazon_con_caja: "Maceta de arcilla de corazón con caja"
+        macetas_arcilla: "macetas de arcilla",
+        macetas_arcilla_con_yute: "macetas de arcilla con yute",
+        macetas_arcilla_con_caja: "macetas de arcilla con caja",
+        macetas_arcilla_corazon: "macetas de arcilla de corazón",
+        macetas_arcilla_corazon_con_caja: "macetas de arcilla de corazón con caja"
     },
     velas: {
-        vela: "Vela",
-        vela_con_yute: "Vela con yute",
-        vela_con_yute_y_soguilla_verde: "Vela con yute y soguilla verde",
-        vela_mas_empaque: "Vela más empaque",
-        vela_con_yute_mas_empaque: "Vela con yute más empaque",
-        vela_con_caja: "Vela con caja",
-        vela_con_caja_y_yute: "Vela con caja y yute"
+        vela: "velas",
+        vela_con_yute: "velas con yute",
+        vela_con_yute_y_soguilla_verde: "velas con yute y soguilla verde",
+        vela_mas_empaque: "velas más empaque",
+        vela_con_yute_mas_empaque: "velas con yute más empaque",
+        vela_con_caja: "velas con caja",
+        vela_con_caja_y_yute: "velas con caja y yute"
     },
     velas_tubo: {
-        velas_tubo: "Vela tubo",
-        velas_tubo_mas_empaque: "Vela tubo más empaque",
-        velas_tubo_con_angelito: "Vela tubo con angelito",
-        velas_tubo_con_angelito_mas_empaque: "Vela tubo con angelito más empaque"
+        velas_tubo: "velas tubo",
+        velas_tubo_mas_empaque: "velas tubo más empaque",
+        velas_tubo_con_angelito: "velas tubo con angelito",
+        velas_tubo_con_angelito_mas_empaque: "velas tubo con angelito más empaque"
     }
 };
 

@@ -21,11 +21,14 @@ function actualizar_precio(productoSeleccionado, cantidad) {
     const mensajePrecio = `Precio por unidad: S/ ${precioPorUnidad}
 ✨ El precio por ${cantidad} unidades de ${nombreVisible} es de S/ ${totalPrecio}`;
 
-    // Limpiar el contenido anterior de #precio
-    const precioElemento = document.getElementById("precio");
-    precioElemento.innerText = "";  // Limpiar antes de actualizar
+// Limpiar antes de actualizar
+const precioElemento = document.getElementById("precio");
+precioElemento.innerText = "";  // Limpiar el contenido previamente
+
+// Solo actualizar el precio si es diferente al último
+if (precioElemento.innerText !== mensajePrecio) {
     precioElemento.innerText = mensajePrecio;
-    precioElemento.style.display = "block";  // Asegurarse de mostrarlo
+}
 
     return mensajePrecio; // Retornar el mensajePrecio para usarlo en la función resumen
 }

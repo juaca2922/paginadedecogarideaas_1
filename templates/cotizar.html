@@ -236,49 +236,6 @@ function cotizar_producto(productoSeleccionado) {
     // Asegurarse de mostrar el botón de copiar
     document.getElementById("copiarResumen").style.display = "inline-block";
 }
-
-// Función para actualizar el precio
-function actualizar_precio(productoSeleccionado, cantidad) {
-    let tipoSeleccionado = document.getElementById('tipo_' + productoSeleccionado).value;
-    let precio = preciosPorCantidad[productoSeleccionado][tipoSeleccionado];
-    let precioFinal = 0;
-
-    if (cantidad >= 100) {
-        precioFinal = precio[100];
-    } else if (cantidad >= 50) {
-        precioFinal = precio[50];
-    } else if (cantidad >= 25) {
-        precioFinal = precio[25];
-    } else {
-        precioFinal = precio[0];
-    }
-
-    let precioPorUnidad = precioFinal.toFixed(2);
-    let totalPrecio = (precioFinal * cantidad).toFixed(2);
-    const nombreVisible = nombresVisibles[productoSeleccionado]?.[tipoSeleccionado] || tipoSeleccionado;
-
-    const mensajePrecio = `Precio por unidad: S/ ${precioPorUnidad}
-✨ El precio por ${cantidad} unidades de ${nombreVisible} es de S/ ${totalPrecio}`;
-
-    // Mostrar precio en la interfaz
-    document.getElementById("precio").innerText = mensajePrecio;
-    document.getElementById("precio").style.display = "block";  // Asegurarse de mostrarlo
-}
-
-// Función para actualizar el resumen
-function actualizar_resumen(productoSeleccionado, cantidad) {
-    // Limpiar contenido previo de #resumen
-    const resumenElemento = document.getElementById("resumen");
-    resumenElemento.innerText = "";
-
-    // Resumen del producto
-    const resumen = textosResumen[productoSeleccionado] || "";
-    const mensajeFinal = "\n\nLa personalización se coordina luego de realizar el abono del pedido.\n¿Te gustaría hacer tu pedido o ver algunos modelos? ¡Estoy para ayudarte! 💬";
-
-    const resumenCompleto = mensajePrecio + "\n\n" + resumen.trim() + mensajeFinal;
-    resumenElemento.innerText = resumenCompleto;
-    resumenElemento.style.display = "block";  // Asegurarse de mostrarlo
-}
 </script>
 
 
