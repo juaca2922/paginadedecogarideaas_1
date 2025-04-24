@@ -31,12 +31,13 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="position: absolute; z-index: 999; left: 0;">
                     <a class="dropdown-item" href="{{ url_for('respuesta_hola') }}">Hola, ¿Sigue disponible?</a>
-                    <a class="dropdown-item" href="{{ url_for('respuesta_precio') }}">Precio de los recuerdos</a>
-                    <a class="dropdown-item" href="{{ url_for('cotizar') }}">Desea cotizar</a>
+                    <a class="dropdown-item" href="{{ url_for('respuesta_precio') }}">Precio de los recuerdos</a>   
+                    <a class="dropdown-item" href="{{ url_for('cotizar') }}">Desea cotizar</a> 
+                    <a class="dropdown-item" href="{{ url_for('respuesta_modelos') }}">Modelos (links)</a>
                     <a class="dropdown-item" href="{{ url_for('respuesta_ubicacion') }}">¿Dónde te encuentras ubicado?</a>
                     <a class="dropdown-item" href="{{ url_for('respuesta_pago') }}">¿Se paga contra entrega?</a>
                     <a class="dropdown-item" href="{{ url_for('respuesta_delivery') }}">Desea cotizar el delivery</a>
-                    <a class="dropdown-item" href="{{ url_for('respuesta_modelos') }}">Modelos (links)</a>
+                    <a class="dropdown-item" href="{{ url_for('respuesta_modelos') }}">Modelos (links)</a>   
                 </div>
             </li>
         </ul>
@@ -137,7 +138,7 @@
        .navbar .dropdown-item {
         font-size: 2.5rem !important; /* Aumenta el tamaño de las opciones del dropdown en pantallas grandes */
         }
-    }
+    
 
 
     /* Cambia el color del fondo del navbar */
@@ -145,3 +146,6 @@
         background-color: #343a40 !important;
     }
 </style>
+
+
+

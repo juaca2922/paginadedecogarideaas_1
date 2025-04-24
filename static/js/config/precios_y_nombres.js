@@ -20,7 +20,7 @@ const preciosPorCantidad = {
         macetas_loza_redonda_con_caja: { 0: 8.50, 25: 8.10, 50: 7.50, 100: 7.30 },
         macetas_loza_octogonal: { 0: 7.20, 25: 6.80, 50: 6.20, 100: 6.00 },
         macetas_loza_paloma: { 0: 8.00, 25: 7.30, 50: 6.70, 100: 6.50 },
-        macetas_loza_paloma_con_caja: { 0: 9.50, 25: 8.80, 50: 8.20, 100: 8.80 }
+        macetas_loza_paloma_con_caja: { 0: 9.50, 25: 8.80, 50: 8.20, 100: 8.00 }
     },
     // Macetas de Arcilla
     macetas_arcilla: {

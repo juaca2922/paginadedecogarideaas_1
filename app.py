@@ -7,33 +7,33 @@ app = Flask(__name__)
 def home():
     return render_template("index.html")  # Esto carga la página principal
 
-@app.route('/respuesta_hola')
-def respuesta_hola():
-    return render_template('respuesta_hola.html')
-
-@app.route('/respuesta_precio')
-def respuesta_precio():
-    return render_template('respuesta_precio.html')
-
 @app.route('/cotizar')
 def cotizar():
     return render_template('cotizar.html')
 
-@app.route('/respuesta_ubicacion')
+@app.route('/respuestas/respuesta_hola')
+def respuesta_hola():
+    return render_template('respuestas/respuesta_hola.html')
+
+@app.route('/respuestas/respuesta_precio')
+def respuesta_precio():
+    return render_template('respuestas/respuesta_precio.html')
+
+@app.route('/respuestas/respuesta_ubicacion')
 def respuesta_ubicacion():
-    return render_template('respuesta_ubicacion.html')
+    return render_template('respuestas/respuesta_ubicacion.html')
 
-@app.route('/respuesta_metododepago')
+@app.route('/respuestas/respuesta_pago')
 def respuesta_pago():
-    return render_template('respuesta_pago.html')
+    return render_template('respuestas/respuesta_pago.html')
 
-@app.route('/respuesta_delivery')
+@app.route('/respuestas/respuesta_delivery')
 def respuesta_delivery():
-    return render_template('respuesta_delivery.html')
+    return render_template('respuestas/respuesta_delivery.html')
 
-@app.route('/respuesta_modelos')
+@app.route('/respuestas/respuesta_modelos')
 def respuesta_modelos():
-    return render_template('respuesta_modelos.html')
+    return render_template('respuestas/respuesta_modelos.html')
 
 if __name__ == "__main__":
     # Obtiene el puerto asignado por Render, si no existe usa el puerto 5000 por defecto
