@@ -40,6 +40,27 @@
                     <a class="dropdown-item" href="{{ url_for('respuesta_modelos') }}">Modelos (links)</a>   
                 </div>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white large-link" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Para Publicar
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="position: absolute; z-index: 999; left: 0;">
+                    <a class="dropdown-item" href="{{ url_for('publicare_Bautizo') }}">Bautizo</a>
+                    <a class="dropdown-item" href="{{ url_for('publicare_Baby_Shower') }}">Baby Shower</a>
+                    <a class="dropdown-item" href="{{ url_for('publicare_Comunión') }}">Comunión</a>
+                    <a class="dropdown-item" href="{{ url_for('publicare_Cumpleaños') }}">Cumpleaños</a>
+                    <a class="dropdown-item" href="{{ url_for('publicare_Día_de_la_Madre') }}">Día de la Madre</a>
+                    <a class="dropdown-item" href="{{ url_for('publicare_Día_del_Trabajador') }}">Día del Trabajador</a>
+                    <a class="dropdown-item d-none" href="{{ url_for('publicare_Día_de_la_Mujer') }}">Día de la Mujer</a>
+                    <a class="dropdown-item" href="{{ url_for('publicare_Quince_Años') }}">Quince Años</a>
+                    <a class="dropdown-item" href="{{ url_for('publicare_Corporativo') }}">Corporativo</a>
+                    <a class="dropdown-item" href="{{ url_for('publicare_Matrimonio') }}">Matrimonio</a>
+                    <a class="dropdown-item" href="{{ url_for('publicare_Misa_de_Honras') }}">Misa de Honras</a>
+                    <a class="dropdown-item d-none" href="{{ url_for('publicare_San_Valentín') }}">San Valentín</a>
+                    <a class="dropdown-item d-none" href="{{ url_for('publicare_Navidad') }}">Navidad</a>                    
+                </div>
+            </li>            
         </ul>
     </div>
 </nav>

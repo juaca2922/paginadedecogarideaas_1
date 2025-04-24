@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Recuerdos para Misa de Honras{% endblock %}
+
+{% block content %}
+
+    <!-- 🌿✨ BLOQUE 1 -->
+    <h2 id="titulo1" style="font-size: 2.2rem; text-align: center;">
+        🌿✨ Recuerdos Personalizados para Misa de Honras ✨🌿
+    </h2>
+
+    <div class="text-center mt-2 mb-2">
+        <button class="btn btn-outline-primary mr-2" onclick="copiarSolo('titulo1')" style="font-size: 1.2rem;">Copiar Título 🌿✨</button>
+    </div>
+
+    <div id="contenido1" class="ancho-contenedor mt-2" style="font-size: 1.4rem;">
+        <p>Rinde un homenaje especial a tus seres queridos con nuestros recuerdos personalizados para Misa de Honras. Un detalle único que transmite respeto y cariño en momentos de reflexión.</p>
+
+        <ul>
+            <li>✔ Diseños personalizados y llenos de amor.</li>
+            <li>✔ Perfectos para recordar y honrar a quienes ya no están.</li>
+            <li>🚚 Envíos disponibles.</li>
+        </ul>
+
+        <p>¡Haz tu homenaje más significativo con un detalle especial!</p>
+        <p>Contáctanos para más información o para hacer tu pedido. 😊</p>
+    </div>
+
+    <div class="text-center mt-2 mb-5">
+        <button class="btn btn-success" onclick="copiarSolo('contenido1')" style="font-size: 1.2rem;">Copiar Texto 🌿✨</button>
+    </div>
+
+    <hr>
+
+    <!-- 🌸💫 BLOQUE 2 -->
+    <h2 id="titulo2" style="font-size: 2.2rem; text-align: center;">
+        🌸💫 Recuerdos Personalizados para Misa de Honras 💫🌸
+    </h2>
+
+    <div class="text-center mt-2 mb-2">
+        <button class="btn btn-outline-primary mr-2" onclick="copiarSolo('titulo2')" style="font-size: 1.2rem;">Copiar Título 🌸💫</button>
+    </div>
+
+    <div id="contenido2" class="ancho-contenedor mt-2" style="font-size: 1.4rem;">
+        <p>Honra la memoria de tus seres queridos con recuerdos personalizados para Misa de Honras. Un detalle único y lleno de respeto para acompañar a la familia y amigos en este momento especial.</p>
+
+        <ul>
+            <li>✔ Recuerdos diseñados con cariño y respeto.</li>
+            <li>✔ Personalización única para cada ocasión.</li>
+            <li>🚚 Envíos disponibles.</li>
+        </ul>
+
+        <p>¡Haz tu tributo más especial con un detalle lleno de amor!</p>
+        <p>Contáctanos para obtener más información o realizar tu pedido. 😊</p>
+    </div>
+
+    <div class="text-center mt-2 mb-5">
+        <button class="btn btn-success" onclick="copiarSolo('contenido2')" style="font-size: 1.2rem;">Copiar Texto 🌸💫</button>
+    </div>
+
+    <!-- SCRIPT PARA COPIAR (titulo y texto) -->
+    <script>
+        function copiarSolo(id) {
+            const texto = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(texto).then(() => {
+                alert('¡Copiado al portapapeles!');
+            }).catch((err) => {
+                alert('Error al copiar: ' + err);
+            });
+        }
+    </script>
+
+{% endblock %}

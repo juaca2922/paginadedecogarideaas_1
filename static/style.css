@@ -33,3 +33,9 @@ p {
     padding: 0;
     line-height: 1; /* Puedes ajustar a 1.2, 1.4 o lo que te parezca mejor */
 }
+
+.ancho-contenedor {
+    max-width: 100%;
+    width: 95%;  /* Puedes ajustar este valor */
+    margin: 0 auto;
+}
