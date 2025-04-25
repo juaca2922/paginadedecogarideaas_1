@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block title %}Recuerdos para Día de la Madre{% endblock %}
+
+{% block content %}
+
+    <!-- 🌿✨ BLOQUE 1 -->
+    <h2 id="titulo1" style="font-size: 2.2rem; text-align: center;">
+        🌿✨ Recuerdos Personalizados para el Día de la Madre ✨🌿
+    </h2>
+
+    <div class="text-center mt-2 mb-2">
+        <button class="btn btn-outline-primary mr-2" onclick="copiarSolo('titulo1')" style="font-size: 1.2rem;">Copiar Título 🌿✨</button>
+    </div>
+
+    <div id="contenido1" class="ancho-contenedor mt-2" style="font-size: 1.4rem;">
+        <p>Celebra a mamá con un detalle único y lleno de amor. Nuestros recuerdos personalizados para el Día de la Madre están diseñados para hacer su día aún más especial.</p>
+
+        <ul>
+            <li>✔ Diseños personalizados que expresan cariño y gratitud.</li>
+            <li>✔ Un detalle perfecto para rendir homenaje a mamá.</li>
+            <li>🚚 Envíos disponibles.</li>
+        </ul>
+
+        <p>Haz que este Día de la Madre sea aún más memorable con un regalo único.</p>
+        <p>Contáctanos para más información o para hacer tu pedido. 😊</p>
+    </div>
+
+    <div class="text-center mt-2 mb-5">
+        <button class="btn btn-success" onclick="copiarSolo('contenido1')" style="font-size: 1.2rem;">Copiar Texto 🌿✨</button>
+    </div>
+
+    <hr>
+
+    <!-- 🌸💖 BLOQUE 2 -->
+    <h2 id="titulo2" style="font-size: 2.2rem; text-align: center;">
+        🌸💖 Recuerdos Especiales para el Día de la Madre 💖🌸
+    </h2>
+
+    <div class="text-center mt-2 mb-2">
+        <button class="btn btn-outline-primary mr-2" onclick="copiarSolo('titulo2')" style="font-size: 1.2rem;">Copiar Título 🌸💖</button>
+    </div>
+
+    <div id="contenido2" class="ancho-contenedor mt-2" style="font-size: 1.4rem;">
+        <p>Haz que el Día de la Madre sea aún más especial con un detalle único y personalizado. Un recuerdo que transmite todo el amor y agradecimiento hacia mamá.</p>
+
+        <ul>
+            <li>✔ Diseños especiales llenos de cariño y significado.</li>
+            <li>✔ El detalle perfecto para celebrar a la mujer más importante de tu vida.</li>
+            <li>🚚 Envíos disponibles.</li>
+        </ul>
+
+        <p>Haz que este Día de la Madre sea inolvidable con un regalo único.</p>
+        <p>Contáctanos para más detalles o para hacer tu pedido. 😊</p>
+    </div>
+
+    <div class="text-center mt-2 mb-5">
+        <button class="btn btn-success" onclick="copiarSolo('contenido2')" style="font-size: 1.2rem;">Copiar Texto 🌸💖</button>
+    </div>
+
+    <hr>
+
+    <!--  TÍTULO Y ETIQUETAS -->
+    <h2 style="font-size: 2.2rem; text-align: center;">
+        💐 Etiquetas para recuerdos con suculentas 💐
+    </h2>
+
+    <div id="contenidoEtiquetas" class="ancho-contenedor mt-2" style="font-size: 1.4rem; text-align: center;">
+        <p>Día de la Madre</p>
+        <p>Recuerdos personalizados</p>
+        <p>Regalos para mamá</p>
+        <p>Suculentas decorativas</p>
+        <p>Regalos originales</p>
+        <p>Detalles para mamá</p>
+        <p>Decoración con suculentas</p>
+        <p>Regalos únicos</p>
+        <p>Día especial</p>
+        <p>Regalos hechos con amor</p>
+        <p>Recuerdo para mamá</p>
+        <p>Mamá reina</p>
+        <p>Regalos con mensaje</p>
+        <p>Detalles personalizados</p>
+        <p>Cumpleaños mamá</p>
+        <p>Regalos de Día de la Madre</p>
+        <p>Detalles para regalar</p>
+        <p>Recuerdos con plantas</p>
+        <p>Celebración Día de la Madre</p>
+        <p>Amor a mamá</p>
+    </div>
+
+    <h2 style="font-size: 2.2rem; text-align: center;">
+        🕯️ Etiquetas para recuerdos con velas 🕯️
+    </h2>
+
+    <div id="contenidoEtiquetas" class="ancho-contenedor mt-2" style="font-size: 1.4rem; text-align: center;">
+        <p>Día de la Madre</p>
+        <p>Velas personalizadas</p>
+        <p>Regalos para mamá</p>
+        <p>Detalles para mamá</p>
+        <p>Regalos únicos</p>
+        <p>Velas con mensaje</p>
+        <p>Regalos hechos con amor</p>
+        <p>Detalles personalizados</p>
+        <p>Velas decorativas</p>
+        <p>Homenajes para mamá</p>
+        <p>Regalos originales</p>
+        <p>Regalos especiales</p>
+        <p>Celebra a mamá</p>
+        <p>Detalles para el Día de la Madre</p>
+        <p>Recuerdos para mamá</p>
+        <p>Homenaje a mamá</p>
+        <p>Día especial</p>
+        <p>Detalles de cariño</p>
+        <p>Regalos con mensaje</p>
+        <p>Amor a mamá</p>
+    </div>            
+
+    <!-- SCRIPT PARA COPIAR (titulo y texto) -->
+    <script>
+        function copiarSolo(id) {
+            const texto = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(texto).then(() => {
+                alert('¡Copiado al portapapeles!');
+            }).catch((err) => {
+                alert('Error al copiar: ' + err);
+            });
+        }
+    </script>
+
+{% endblock %}

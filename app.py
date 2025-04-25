@@ -40,6 +40,10 @@ def respuesta_modelos():
 
  # Esto carga el desplegllabe de Para Publicar
 
+@app.route('/publicar/para_toda_ocasion')
+def publicare_para_toda_ocasion():
+    return render_template('publicar/publicare_para_toda_ocasion.html')
+
 @app.route('/publicar/bautizo')
 def publicare_Bautizo():
     return render_template('publicar/publicare_bautizo.html')
