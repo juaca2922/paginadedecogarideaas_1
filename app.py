@@ -1,5 +1,5 @@
+from flask import Flask, render_template, request
 import os
-from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -72,6 +72,10 @@ def publicare_Día_del_Trabajador():
 def publicare_Día_de_la_Mujer():
     return render_template('publicar/publicare_dia_de_la_mujer.html')
 
+@app.route('/publicar/exposicion')
+def publicare_exposicion():
+    return render_template('publicar/publicare_exposicion.html')
+
 @app.route('/publicar/quince_anos')
 def publicare_Quince_Años():
     return render_template('publicar/publicare_quince_anos.html')
@@ -96,12 +100,84 @@ def publicare_San_Valentín():
 def publicare_Navidad():
     return render_template('publicar/publicare_navidad.html')
 
+# Función para obtener el siguiente número de proforma
+def obtener_siguiente_numero_proforma():
+    ruta_contador = "contador.txt"
+    
+    # Si el archivo no existe, creamos uno con 0
+    if not os.path.exists(ruta_contador):
+        with open(ruta_contador, 'w') as f:
+            f.write('0')
 
+    # Leemos el número actual
+    with open(ruta_contador, 'r') as f:
+        numero_actual = int(f.read().strip())
 
+    # Calculamos el siguiente número
+    siguiente_numero = numero_actual + 1
+
+    # Guardamos el siguiente número para futuras proformas
+    with open(ruta_contador, 'w') as f:
+        f.write(str(siguiente_numero))
+
+    return siguiente_numero
+
+@app.route('/proforma', methods=['GET', 'POST'])
+def proforma():
+    if request.method == 'POST':
+        # Recibimos los datos del formulario
+        cliente_nombre = request.form['clienteNombre']
+        direccion_cliente = request.form['direccionCliente']
+        ruc_cliente = request.form['rucCliente']
+        producto = request.form['producto']
+        cantidad = int(request.form['cantidad'])
+        precio = float(request.form['precio'])
+        comentarios = request.form['comentarios']
+        fecha = request.form['fecha']
+
+        # Calculamos el total
+        total = cantidad * precio
+
+        # Obtener el siguiente número de proforma
+        numero_proforma = obtener_siguiente_numero_proforma()
+
+        # Creación de lista de productos (puedes mejorar esto para recibir más productos)
+        productos = [{
+            'descripcion': producto,
+            'cantidad': cantidad,
+            'precio': precio,
+            'subtotal': total
+        }]
+
+        # Pasamos los datos a la plantilla
+        return render_template('proforma.html', 
+                               cliente_nombre=cliente_nombre,
+                               direccion_cliente=direccion_cliente,
+                               ruc_cliente=ruc_cliente,
+                               producto=producto,
+                               cantidad=cantidad,
+                               precio=precio,
+                               total=total,
+                               comentarios=comentarios,
+                               fecha=fecha,
+                               numero_proforma=numero_proforma,
+                               productos=productos)
+    
+    # Si es un GET, simplemente renderizamos la plantilla vacía
+    return render_template('proforma.html', 
+                           cliente_nombre=None,
+                           direccion_cliente=None,
+                           ruc_cliente=None,
+                           producto=None,
+                           cantidad=None,
+                           precio=None,
+                           total=None,
+                           comentarios=None,
+                           fecha=None,
+                           numero_proforma=None,
+                           productos=None)
 
 
 if __name__ == "__main__":
-    # Obtiene el puerto asignado por Render, si no existe usa el puerto 5000 por defecto
     port = int(os.environ.get("PORT", 5000))
-    # Ejecuta el servidor en 0.0.0.0 para que sea accesible desde cualquier dirección
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=port, debug=True)

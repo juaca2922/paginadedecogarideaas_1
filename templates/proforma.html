@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% block title %}Proforma - Decogarideas{% endblock %}
+
+{% block content %}
+<!-- Para rellenar los datos -->
+<form method="POST" action="{{ url_for('proforma') }}">
+    <h5><strong>Datos del Cliente</strong></h5>
+    <div class="form-group">
+        <label for="clienteNombre">Nombre o Razón Social</label>
+        <input type="text" class="form-control" id="clienteNombre" name="clienteNombre" required>
+    </div>
+    <div class="form-group">
+        <label for="direccionCliente">Dirección</label>
+        <input type="text" class="form-control" id="direccionCliente" name="direccionCliente" required>
+    </div>
+    <div class="form-group">
+        <label for="rucCliente">RUC</label>
+        <input type="text" class="form-control" id="rucCliente" name="rucCliente" required>
+    </div>
+
+    <h5><strong>Detalle de Producto</strong></h5>
+    <div class="form-group">
+        <label for="producto">Descripción del Producto</label>
+        <input type="text" class="form-control" id="producto" name="producto" required>
+    </div>
+    <div class="form-group">
+        <label for="cantidad">Cantidad</label>
+        <input type="number" class="form-control" id="cantidad" name="cantidad" required>
+    </div>
+    <div class="form-group">
+        <label for="precio">Precio Unitario</label>
+        <input type="number" class="form-control" id="precio" name="precio" required>
+    </div>
+
+    <div class="form-group">
+        <label for="comentarios">Comentarios</label>
+        <textarea class="form-control" id="comentarios" name="comentarios" rows="4"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="fecha">Fecha</label>
+        <input type="date" class="form-control" id="fecha" name="fecha" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Generar Proforma</button>
+</form>
+
+
+<!-- Para verla proforma   -->
+
+<div class="proforma-container">
+    <h2 class="text-center mb-5">PROFORMA</h2>
+
+    <!-- Datos de la Empresa -->
+    <div class="row">
+        <div class="col-md-6">
+            <h5><strong>NOMBRE DE LA EMPRESA</strong></h5>
+            <p>Dirección: Calle Ficticia 123</p>
+            <p>Teléfono: 987654321</p>
+            <p>Correo electrónico: empresa@email.com</p>
+            <p>RUC: 12345678900</p>
+        </div>
+        <div class="col-md-6 text-right">
+            <p>Proforma N°: {{ numero_proforma }}</p>
+            <p>Fecha: {{ fecha }}</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Datos del Cliente -->
+    {% if cliente_nombre %}
+    <div>
+        <h5><strong>DATOS DEL CLIENTE</strong></h5>
+        <p>Nombre o razón social: {{ cliente_nombre }}</p>
+        <p>Dirección: {{ direccion_cliente }}</p>
+        <p>Identificación fiscal: {{ ruc_cliente }}</p>
+    </div>
+    <hr>
+    {% endif %}
+
+<!-- Detalle de Productos -->
+<div class="table-responsive mt-4">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Precio unitario</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if productos %}
+                {% for prod in productos %}
+                <tr>
+                    <td>{{ prod.descripcion }}</td>
+                    <td>{{ prod.cantidad }}</td>
+                    <td>S/. {{ prod.precio }}</td>
+                    <td>S/. {{ prod.subtotal }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4">No se han agregado productos.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+
+    <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
+            <table class="table table-borderless">
+                <tr>
+                    <th>Subtotal:</th>
+                    <td>S/. {{ total }}</td>
+                </tr>
+                <tr>
+                    <th>Impuestos (0% IGV):</th>
+                    <td>S/. 0.00</td>
+                </tr>
+                <tr>
+                    <th><strong>Total a pagar:</strong></th>
+                    <td><strong>S/. {{ total }}</strong></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Condiciones de Venta -->
+    <div>
+        <h5><strong>CONDICIONES DE VENTA</strong></h5>
+        <p>Forma de pago: Efectivo o Transferencia</p>
+        <p>Tiempo de entrega: 3 días hábiles</p>
+        <p>Validez de la proforma: 7 días</p>
+    </div>
+
+</div> <!-- fin de .proforma-container -->
+
+ <!-- Botón para generar el PDF -->
+ <div class="text-center mt-4">
+    <button class="btn btn-success" onclick="generarPDF()">Descargar Proforma en PDF</button>
+</div>
+
+
+
+<!-- Script para generar el PDF -->
+<script>
+function generarPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF('p', 'pt', 'a4');  // A4 en puntos
+
+    const logo = new Image();
+    logo.crossOrigin = "anonymous"; // Evitar problemas de CORS
+    logo.src = "{{ url_for('static', filename='img/logo_empresa.png') }}";
+
+    logo.onload = function() {
+        // Capturamos la proforma con mayor resolución
+        html2canvas(document.querySelector(".proforma-container"), {
+            scale: 3,  // Captura a escala más alta para mayor calidad
+            useCORS: true,
+            backgroundColor: '#ffffff'  // Fondo blanco
+        }).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+
+            const pageWidth = doc.internal.pageSize.getWidth();
+            const pageHeight = doc.internal.pageSize.getHeight();
+
+            const imgProps = doc.getImageProperties(imgData);
+
+            // Calcula la altura proporcional para el PDF
+            const pdfHeight = (imgProps.height * pageWidth) / imgProps.width;
+
+            // Insertamos el logo de la empresa
+            doc.addImage(logo, 'PNG', (pageWidth - 120) / 2, 20, 120, 60); // Logo centrado
+
+            // Insertamos el contenido capturado con la mejor calidad
+            doc.addImage(imgData, 'PNG', 0, 100, pageWidth, pdfHeight - 120); // Ajuste de la imagen
+
+            // Guardamos el PDF generado
+            doc.save("proforma.pdf");
+        });
+    };
+}
+    </script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
