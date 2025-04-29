@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Recuerdos para  Navidad{% endblock %}
+
+{% block content %}
+
+    <!--recuerdos velas o suculentas-->
+    <h2 id="titulo1" style="font-size: 2.2rem; text-align: center;">
+        🎄✨ Detalles Únicos para Navidad ✨🎄
+    </h2>
+    
+    <div class="text-center mt-2 mb-2">
+        <button class="btn btn-outline-primary mr-2" onclick="copiarSolo('titulo1')" style="font-size: 1.2rem;">Copiar Título 🎄✨</button>
+    </div>
+    
+    <div id="contenido1" class="ancho-contenedor mt-2" style="font-size: 1.4rem;">
+        <p>Haz que esta Navidad sea aún más especial con nuestros recuerdos personalizados. Ofrecemos detalles únicos que harán de esta temporada un momento lleno de amor y alegría.</p>
+    
+        <ul>
+            <li>🎁 Recuerdos personalizados para Navidad</li>
+            <li>🎉 Presentación lista para regalar</li>
+            <li>🚚 Envíos disponibles</li>
+        </ul>
+    
+        <p>¡Celebra la magia de la Navidad con nuestros detalles pensados especialmente para ti y tus seres queridos!</p>
+        <p>Contáctanos para más información o para realizar tu pedido. 💖</p>
+    </div>
+    
+    <div class="text-center mt-2 mb-5">
+        <button class="btn btn-success" onclick="copiarSolo('contenido1')" style="font-size: 1.2rem;">Copiar Texto 🎄✨</button>
+    </div>
+    
+    <hr>
+    
+    
+  
+        <!--  TÍTULO Y ETIQUETAS -->
+        <div id="contenidoEtiquetas" class="ancho-contenedor mt-2" style="font-size: 1.4rem; text-align: center;">
+            <p>Detalles de Navidad</p>
+            <p>Regalos Personalizados Navidad</p>
+            <p>Recuerdos para Navidad</p>
+            <p>Regalos Originales Navidad</p>
+            <p>Decoración de Navidad</p>
+            <p>Detalles Únicos para Navidad</p>
+            <p>Regalos Hechos a Mano Navidad</p>
+            <p>Regalos Creativos Navidad</p>
+            <p>Recuerdos de Navidad</p>
+            <p>Detalles para Fiesta de Navidad</p>
+            <p>Navidad Personalizada</p>
+            <p>Regalos para Navidad Originales</p>
+            <p>Regalos de Navidad con Estilo</p>
+            <p>Detalles Especiales Navidad</p>
+            <p>Regalos Memorables Navidad</p>
+            <p>Recuerdos Navideños Personalizados</p>
+            <p>Regalos Personalizados para Navidad 2025</p>
+            <p>Navidad con Estilo</p>
+            <p>Regalos de Navidad para Familia</p>
+            <p>Detalles Navideños Hechos a Mano</p>
+        </div>
+        
+        
+
+        
+    <!-- SCRIPT PARA COPIAR (titulo y texto) -->
+    <script>
+        function copiarSolo(id) {
+            const texto = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(texto).then(() => {
+                alert('¡Copiado al portapapeles!');
+            }).catch((err) => {
+                alert('Error al copiar: ' + err);
+            });
+        }
+    </script>
+
+{% endblock %}

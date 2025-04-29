@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Recuerdos para  Eventos Coorporativos{% endblock %}
+
+{% block content %}
+
+    <!--suculentas-->
+    <h2 id="titulo1" style="font-size: 2.2rem; text-align: center;">
+        💼✨ Detalles Únicos para Eventos Corporativos ✨💼
+    </h2>
+    
+    <div class="text-center mt-2 mb-2">
+        <button class="btn btn-outline-primary mr-2" onclick="copiarSolo('titulo1')" style="font-size: 1.2rem;">Copiar Título 💼✨</button>
+    </div>
+    
+    <div id="contenido1" class="ancho-contenedor mt-2" style="font-size: 1.4rem;">
+        <p>Haz que tu evento corporativo sea inolvidable con nuestros detalles personalizados. Ofrecemos recuerdos únicos que reflejan el estilo y profesionalismo de tu empresa, perfectos para agradecer a tus colaboradores, clientes o invitados.</p>
+    
+        <ul>
+            <li>🎁 Recuerdos personalizados</li>
+            <li>🎉 Presentación elegante y profesional</li>
+            <li>🚚 Envíos disponibles</li>
+        </ul>
+    
+        <p>¡Haz que tu evento corporativo sea aún más memorable con nuestros detalles personalizados!</p>
+        <p>Contáctanos para más información o para realizar tu pedido. 💼</p>
+    </div>
+    
+    <div class="text-center mt-2 mb-5">
+        <button class="btn btn-success" onclick="copiarSolo('contenido1')" style="font-size: 1.2rem;">Copiar Texto 💼✨</button>
+    </div>
+    
+    <hr>    
+
+      <!--  no se venden velas para eventos coorporativos -->
+ 
+    
+    
+  
+        <!--  TÍTULO Y ETIQUETAS -->
+        <h2 style="font-size: 2.2rem; text-align: center;">
+            💐 Etiquetas para recuerdos con suculentas 💐
+            <div id="contenidoEtiquetas" class="ancho-contenedor mt-2" style="font-size: 1.4rem; text-align: center;">
+                <p>Detalles Corporativos</p>
+                <p>Regalos Personalizados Corporativos</p>
+                <p>Recuerdos para Eventos Corporativos</p>
+                <p>Detalles Empresariales</p>
+                <p>Regalos para Empresas</p>
+                <p>Regalos de Agradecimiento Corporativos</p>
+                <p>Regalos Hechos a Mano Corporativos</p>
+                <p>Detalles de Empresa Personalizados</p>
+                <p>Regalos Elegantes Corporativos</p>
+                <p>Recuerdos para Clientes Corporativos</p>
+                <p>Regalos Corporativos Personalizados</p>
+                <p>Detalles para Reuniones de Empresa</p>
+                <p>Regalos Profesionales para Eventos</p>
+                <p>Detalles para Conferencias</p>
+                <p>Regalos Institucionales</p>
+                <p>Recuerdos de Evento Empresarial</p>
+                <p>Regalos Corporativos Creativos</p>
+                <p>Regalos Exclusivos para Empresas</p>
+                <p>Detalles para Eventos de Negocios</p>
+                <p>Regalos de Branding Corporativo</p>
+            </div>            
+        
+        <!--  TÍTULO Y ETIQUETAS -->
+        <h2 style="font-size: 2.2rem; text-align: center;">
+            🕯️ Etiquetas para recuerdos con velas 🕯️
+        </h2>
+   
+        
+    <!-- SCRIPT PARA COPIAR (titulo y texto) -->
+    <script>
+        function copiarSolo(id) {
+            const texto = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(texto).then(() => {
+                alert('¡Copiado al portapapeles!');
+            }).catch((err) => {
+                alert('Error al copiar: ' + err);
+            });
+        }
+    </script>
+
+{% endblock %}

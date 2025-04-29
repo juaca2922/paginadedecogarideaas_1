@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block title %}Recuerdos para  Cumpleaños{% endblock %}
+
+{% block content %}
+
+    <!--suculentas-->
+    <h2 id="titulo1" style="font-size: 2.2rem; text-align: center;">
+        🎉🎂 Detalles Únicos para Cumpleaños 🎂🎉
+    </h2>
+    
+    <div class="text-center mt-2 mb-2">
+        <button class="btn btn-outline-primary mr-2" onclick="copiarSolo('titulo1')" style="font-size: 1.2rem;">Copiar Título 🎉🎂</button>
+    </div>
+    
+    <div id="contenido1" class="ancho-contenedor mt-2" style="font-size: 1.4rem;">
+        <p>Haz que el cumpleaños de tus seres queridos sea aún más especial con nuestros recuerdos personalizados. Ofrecemos detalles únicos que agregarán un toque memorable a este día tan especial.</p>
+    
+        <ul>
+            <li>🎁 Recuerdos personalizados</li>
+            <li>🎉 Presentación lista para regalar</li>
+            <li>🚚 Envíos disponibles</li>
+        </ul>
+    
+        <p>¡Celebra la vida y la alegría con nuestros detalles únicos y personalizados para cumpleaños!</p>
+        <p>Contáctanos para más información o para realizar tu pedido. 💖</p>
+    </div>
+    
+    <div class="text-center mt-2 mb-5">
+        <button class="btn btn-success" onclick="copiarSolo('contenido1')" style="font-size: 1.2rem;">Copiar Texto 🎉🎂</button>
+    </div>
+    
+    <hr>
+    
+
+      <!--  no se venden velas para eventos coorporativos -->
+ 
+    
+    
+  
+        <!--  TÍTULO Y ETIQUETAS -->
+        <h2 style="font-size: 2.2rem; text-align: center;">
+            💐 Etiquetas para recuerdos con suculentas 💐
+            <div id="contenidoEtiquetas" class="ancho-contenedor mt-2" style="font-size: 1.4rem; text-align: center;">
+                <p>Detalles de Cumpleaños</p>
+                <p>Regalos Personalizados Cumpleaños</p>
+                <p>Recuerdos de Cumpleaños</p>
+                <p>Regalos Originales Cumpleaños</p>
+                <p>Detalles Únicos Cumpleaños</p>
+                <p>Decoración de Cumpleaños</p>
+                <p>Regalos Hechos a Mano Cumpleaños</p>
+                <p>Recuerdos para Fiesta de Cumpleaños</p>
+                <p>Regalos Creativos Cumpleaños</p>
+                <p>Detalles para Fiesta de Cumpleaños</p>
+                <p>Cumpleaños Personalizados</p>
+                <p>Regalos para Cumpleaños Adultos</p>
+                <p>Detalles Personalizados para Niños</p>
+                <p>Decoración Personalizada Cumpleaños</p>
+                <p>Regalos Memorables Cumpleaños</p>
+                <p>Regalos Especiales Cumpleaños</p>
+                <p>Recuerdos de Cumpleaños Originales</p>
+                <p>Cumpleaños con Estilo</p>
+                <p>Detalles para Fiestas de Cumpleaños</p>
+                <p>Regalos Divertidos Cumpleaños</p>
+            </div>
+        
+        <!--  TÍTULO Y ETIQUETAS -->
+        <h2 style="font-size: 2.2rem; text-align: center;">
+            🕯️ Etiquetas para recuerdos con velas 🕯️
+        </h2>
+   
+        
+    <!-- SCRIPT PARA COPIAR (titulo y texto) -->
+    <script>
+        function copiarSolo(id) {
+            const texto = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(texto).then(() => {
+                alert('¡Copiado al portapapeles!');
+            }).catch((err) => {
+                alert('Error al copiar: ' + err);
+            });
+        }
+    </script>
+
+{% endblock %}

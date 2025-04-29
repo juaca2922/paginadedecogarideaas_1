@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Recuerdos para  Dia del Trabajador{% endblock %}
+
+{% block content %}
+
+    <!--suculentas-->
+    <h2 id="titulo1" style="font-size: 2.2rem; text-align: center;">
+        👷‍♂️💼 Detalles Únicos para el Día del Trabajador 💼👷‍♀️
+    </h2>
+    
+    <div class="text-center mt-2 mb-2">
+        <button class="btn btn-outline-primary mr-2" onclick="copiarSolo('titulo1')" style="font-size: 1.2rem;">Copiar Título 👷‍♂️💼</button>
+    </div>
+    
+    <div id="contenido1" class="ancho-contenedor mt-2" style="font-size: 1.4rem;">
+        <p>Celebra el esfuerzo y dedicación de tus colaboradores con un detalle especial y personalizado. Ofrecemos recuerdos únicos que reconocerán el trabajo y la entrega de todos aquellos que hacen posible el éxito de tu empresa.</p>
+    
+        <ul>
+            <li>🎁 Recuerdos personalizados para el Día del Trabajador</li>
+            <li>🎉 Presentación elegante y profesional</li>
+            <li>🚚 Envíos disponibles</li>
+        </ul>
+    
+        <p>¡Haz que este Día del Trabajador sea aún más memorable con nuestros detalles pensados especialmente para ellos!</p>
+        <p>Contáctanos para más información o para realizar tu pedido. 💖</p>
+    </div>
+    
+    <div class="text-center mt-2 mb-5">
+        <button class="btn btn-success" onclick="copiarSolo('contenido1')" style="font-size: 1.2rem;">Copiar Texto 👷‍♂️💼</button>
+    </div>
+    
+    <hr>
+    
+      <!--  no se venden velas para eventos coorporativos -->
+ 
+    
+    
+  
+        <!--  TÍTULO Y ETIQUETAS -->
+        <div id="contenidoEtiquetas" class="ancho-contenedor mt-2" style="font-size: 1.4rem; text-align: center;">
+            <p>Detalles Día del Trabajador</p>
+            <p>Regalos Personalizados Día del Trabajador</p>
+            <p>Recuerdos para el Día del Trabajador</p>
+            <p>Regalos Corporativos Día del Trabajador</p>
+            <p>Detalles de Agradecimiento Día del Trabajador</p>
+            <p>Regalos para Empleados</p>
+            <p>Reconocimiento a Empleados</p>
+            <p>Regalos Hechos a Mano Día del Trabajador</p>
+            <p>Regalos para Colaboradores</p>
+            <p>Detalles Profesionales Día del Trabajador</p>
+            <p>Regalos de Apreciación para Trabajadores</p>
+            <p>Recuerdos Personalizados Día del Trabajador</p>
+            <p>Detalles Especiales Día del Trabajador</p>
+            <p>Regalos para Celebrar el Trabajo</p>
+            <p>Detalles Únicos Día del Trabajador</p>
+            <p>Regalos para Empresas</p>
+            <p>Regalos Laborales Personalizados</p>
+            <p>Día del Trabajador 2025</p>
+            <p>Regalos para Equipo de Trabajo</p>
+            <p>Regalos con Estilo Día del Trabajador</p>
+        </div>
+        
+   
+        
+    <!-- SCRIPT PARA COPIAR (titulo y texto) -->
+    <script>
+        function copiarSolo(id) {
+            const texto = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(texto).then(() => {
+                alert('¡Copiado al portapapeles!');
+            }).catch((err) => {
+                alert('Error al copiar: ' + err);
+            });
+        }
+    </script>
+
+{% endblock %}
