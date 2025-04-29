@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Recuerdos para Exposición{% endblock %}
+
+{% block content %}
+
+    <!-- 🌱✨ BLOQUE 1 -->
+    <h2 id="titulo1" style="font-size: 2.2rem; text-align: center;">
+        🌱✨ Recuerdos Personalizados con Suculentas para tu Exposición Escolar ✨📚
+    </h2>
+
+    <div class="text-center mt-2 mb-2">
+        <button class="btn btn-outline-primary mr-2" onclick="copiarSolo('titulo1')" style="font-size: 1.2rem;">Copiar Título 🌱✨</button>
+    </div>
+
+    <div id="contenido1" class="ancho-contenedor mt-2" style="font-size: 1.4rem;">
+        <p>Haz que tu exposición escolar se vuelva inolvidable con suculentas personalizadas. Un detalle único, ecológico y lleno de significado que refleja el esfuerzo y aprendizaje de cada estudiante.</p>
+
+        <ul>
+            <li>✔ Diseños creativos con suculentas que simbolizan trabajo y dedicación.</li>
+            <li>✔ Recuerdos personalizados que acompañan a los estudiantes en su camino académico.</li>
+            <li>🚚 Envíos disponibles.</li>
+        </ul>
+
+        <p>¡Haz que tu exposición escolar sea única con suculentas que destacan el esfuerzo y los logros!</p>
+        <p>Contáctanos para más información o para hacer tu pedido. 😊</p>
+    </div>
+
+    <div class="text-center mt-2 mb-5">
+        <button class="btn btn-success" onclick="copiarSolo('contenido1')" style="font-size: 1.2rem;">Copiar Texto 🌿✨</button>
+    </div>
+
+    <hr>
+
+        <!--  TÍTULO Y ETIQUETAS -->
+        <h2 style="font-size: 2.2rem; text-align: center;">
+            💐 Etiquetas para recuerdos con suculentas 💐
+        </h2>
+    
+        <div id="contenidoEtiquetas" class="ancho-contenedor mt-2" style="font-size: 1.4rem; text-align: center;">
+            <p>Recuerdos Personalizados</p>
+            <p>Suculentas Decorativas</p>
+            <p>Detalles Exposición Escolar</p>
+            <p>Regalos con Plantas</p>
+            <p>Arte con Suculentas</p>
+            <p>Regalos Originales</p>
+            <p>Decoración Escolar</p>
+            <p>Exposición Escolar</p>
+            <p>Plantas Sustentables</p>
+            <p>Manualidades Escolares</p>
+            <p>Exposición Creativa</p>
+            <p>Regalos Hechos a Mano</p>
+            <p>Decoración con Suculentas</p>
+            <p>Regalos para Estudiantes</p>
+            <p>Ideas para Exposición</p>
+            <p>Artículos Escolares Personalizados</p>
+            <p>Plantas para Regalo</p>
+            <p>Recuerdos Escolares</p>
+            <p>Detalles para Maestros</p>
+            <p>Regalos Ecológicos</p>
+        </div>
+
+    <!-- SCRIPT PARA COPIAR (titulo y texto) -->
+    <script>
+        function copiarSolo(id) {
+            const texto = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(texto).then(() => {
+                alert('¡Copiado al portapapeles!');
+            }).catch((err) => {
+                alert('Error al copiar: ' + err);
+            });
+        }
+    </script>
+
+{% endblock %}

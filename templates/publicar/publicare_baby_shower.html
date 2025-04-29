@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block title %}Recuerdos para  Baby Shower{% endblock %}
+
+{% block content %}
+
+    <!--suculentas-->
+<h2 id="titulo1" style="font-size: 2.2rem; text-align: center;">
+    👶 Detalles Únicos para Baby Shower con Suculentas  🌿👶
+</h2>
+
+<div class="text-center mt-2 mb-2">
+    <button class="btn btn-outline-primary mr-2" onclick="copiarSolo('titulo1')" style="font-size: 1.2rem;">Copiar Título 👶</button>
+</div>
+
+<div id="contenido1" class="ancho-contenedor mt-2" style="font-size: 1.4rem;">
+    <p>Celebra la llegada de tu bebé con un regalo especial y personalizado. Ofrecemos recuerdos únicos de suculentas que harán de tu baby shower un evento aún más memorable.</p>
+
+    <ul>
+        <li>🎁 Recuerdos personalizados de suculentas para Baby Shower</li>
+        <li>🎉 Presentación lista para regalar</li>
+        <li>🚚 Envíos disponibles</li>
+    </ul>
+
+    <p>¡Haz que este día tan especial sea aún más único y lleno de amor con nuestros recuerdos verdes!</p>
+    <p>Contáctanos para más información o para realizar tu pedido. 💖</p>
+</div>
+
+<div class="text-center mt-2 mb-5">
+    <button class="btn btn-success" onclick="copiarSolo('contenido1')" style="font-size: 1.2rem;">Copiar Texto 👶</button>
+</div>
+
+<hr>
+
+
+<h2 id="titulo1" style="font-size: 2.2rem; text-align: center;">
+    👶 Detalles Únicos para Baby Shower con Velas 👶🕯️
+</h2>
+
+<div class="text-center mt-2 mb-2">
+    <button class="btn btn-outline-primary mr-2" onclick="copiarSolo('titulo1')" style="font-size: 1.2rem;">Copiar Título 👶</button>
+</div>
+
+<div id="contenido1" class="ancho-contenedor mt-2" style="font-size: 1.4rem;">
+    <p>Celebra la llegada de tu bebé con un regalo especial y personalizado. Ofrecemos detalles únicos de velas que harán de tu baby shower un evento aún más memorable.</p>
+
+    <ul>
+        <li>🎁 Recuerdos personalizados de velas para Baby Shower</li>
+        <li>🎉 Presentación lista para regalar</li>
+        <li>🚚 Envíos disponibles</li>
+    </ul>
+
+    <p>¡Haz que este día tan especial sea aún más único y lleno de amor con nuestras velas decorativas!</p>
+    <p>Contáctanos para más información o para realizar tu pedido. 💖</p>
+</div>
+
+<div class="text-center mt-2 mb-5">
+    <button class="btn btn-success" onclick="copiarSolo('contenido1')" style="font-size: 1.2rem;">Copiar Texto 👶 🕯️</button>
+</div>
+
+
+
+        <!--  TÍTULO Y ETIQUETAS -->
+        <h2 style="font-size: 2.2rem; text-align: center;">
+            💐 Etiquetas para recuerdos con suculentas 💐
+        </h2>
+    
+        <div id="contenidoEtiquetas" class="ancho-contenedor mt-2" style="font-size: 1.4rem; text-align: center;">
+            <p>Detalles Baby Shower</p>
+            <p>Regalos Personalizados Baby Shower</p>
+            <p>Recuerdos con Suculentas</p>
+            <p>Regalos Baby Shower con Suculentas</p>
+            <p>Suculentas Decorativas</p>
+            <p>Regalos Eco Friendly Baby Shower</p>
+            <p>Suculentas para Baby Shower</p>
+            <p>Recuerdos Hechos a Mano</p>
+            <p>Regalos Únicos para Baby Shower</p>
+            <p>Decoración con Suculentas</p>
+            <p>Baby Shower Original</p>
+            <p>Regalos para Mamá y Bebé</p>
+            <p>Detalles para Baby Shower</p>
+            <p>Regalos Creativos Baby Shower</p>
+            <p>Suculentas Personalizadas</p>
+            <p>Regalos Naturales Baby Shower</p>
+            <p>Detalles Personalizados Baby Shower</p>
+            <p>Suculentas para Regalo</p>
+            <p>Regalos con Plantas para Baby Shower</p>
+            <p>Recuerdos Verdes Baby Shower</p>
+        </div>
+        
+        
+        <!--  TÍTULO Y ETIQUETAS -->
+        <h2 style="font-size: 2.2rem; text-align: center;">
+            🕯️ Etiquetas para recuerdos con velas 🕯️
+        </h2>
+    
+        <div id="contenidoEtiquetas" class="ancho-contenedor mt-2" style="font-size: 1.4rem; text-align: center;">
+            <p>Detalles Baby Shower con Velas</p>
+            <p>Regalos Personalizados Baby Shower</p>
+            <p>Recuerdos con Velas</p>
+            <p>Velas para Baby Shower</p>
+            <p>Regalos Originales Baby Shower</p>
+            <p>Velas Decorativas Baby Shower</p>
+            <p>Regalos para Mamá y Bebé</p>
+            <p>Velas Aromáticas Baby Shower</p>
+            <p>Detalles Únicos Baby Shower</p>
+            <p>Regalos Hechos a Mano Baby Shower</p>
+            <p>Velas Personalizadas</p>
+            <p>Decoración Baby Shower</p>
+            <p>Velas para Regalo Baby Shower</p>
+            <p>Recuerdos Hechos a Mano</p>
+            <p>Regalos Creativos Baby Shower</p>
+            <p>Velas Especiales Baby Shower</p>
+            <p>Regalos para Baby Shower Únicos</p>
+            <p>Baby Shower con Estilo</p>
+            <p>Detalles Baby Shower Personalizados</p>
+            <p>Regalos Memorables Baby Shower</p>
+        </div>
+
+    <!-- SCRIPT PARA COPIAR (titulo y texto) -->
+    <script>
+        function copiarSolo(id) {
+            const texto = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(texto).then(() => {
+                alert('¡Copiado al portapapeles!');
+            }).catch((err) => {
+                alert('Error al copiar: ' + err);
+            });
+        }
+    </script>
+
+{% endblock %}
