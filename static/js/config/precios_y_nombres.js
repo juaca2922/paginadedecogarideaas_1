@@ -99,15 +99,17 @@ const textosResumen = {
     // Macetas
     macetas: `
 Incluye:
-🪴 Macetita decorada
-🌱 Suculenta natural
-💌 Tarjetita personalizada con el nombre y mensaje que desees`,
+🪴 Una maceta con decoración especial
+🌱 Una suculenta natural
+🪨 Piedritas decorativas
+💌 Una tarjeta personalizada con el nombre y mensaje que prefieras`,
 
     // Macetas Redondas
     macetas_redondas: `
 Incluye:
 🪴 Maceta redonda decorada
 🌱 Suculenta natural
+🪨 Piedritas decorativas
 💌 Tarjetita personalizada con el nombre y mensaje que desees`,
 
     // Macetas de Loza
@@ -115,6 +117,7 @@ Incluye:
 Incluye:
 🏺 Maceta de loza decorada
 🌱 Planta natural
+🪨 Piedritas decorativas
 💌 Tarjetita personalizada con el nombre y mensaje que desees`,
 
     // Macetas de Arcilla
@@ -122,6 +125,7 @@ Incluye:
 Incluye:
 🏺 Maceta de arcilla
 🌱 Planta natural
+🪨 Piedritas decorativas
 💌 Tarjetita personalizada con el nombre y mensaje que desees`,
 
     // Velas
