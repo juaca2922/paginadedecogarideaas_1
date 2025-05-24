@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Proforma - Decogarideas{% endblock %}
+
+{% block content %}
+
+
+<h1 style="font-size: 2.5rem;">Calculadora IGV (18%)</h1>
+<label for="precioSinIgv"  style="font-size: 3.5rem;">Ingresa el precio sin IGV:</label>
+<input type="number" id="precioSinIgv" step="0.01" oninput="calcularDesdeSinIgv()" 
+       style="width: 100%; height: 3rem; font-size: 2rem; padding: 0.5rem;" />
+
+<p id="resultado" style="font-size: 3.5rem; color: #0c5460;"></p>
+<button id="copiarBtn" class="btn btn-success mt-3" style="font-size: 2.5rem; padding: 15px 30px; display:none;" onclick="copiarTexto()">
+  Copiar texto
+</button>  
+
+<script>
+  function calcularDesdeSinIgv() {
+    const resultadoDiv = document.getElementById('resultado');
+    const copiarBtn = document.getElementById('copiarBtn');
+    const precioSinIgv = parseFloat(document.getElementById('precioSinIgv').value);
+    
+    if (isNaN(precioSinIgv) || precioSinIgv <= 0) {
+      resultadoDiv.textContent = 'Por favor, ingresa un precio válido mayor a 0.';
+      resultadoDiv.style.fontSize = '2.5rem';  // Tamaño grande para error
+      resultadoDiv.style.color = 'red';        // Color rojo para error
+      copiarBtn.style.display = 'none';
+      return;
+    }
+    
+    const igv = precioSinIgv * 0.18;
+    const total = precioSinIgv + igv;
+    const textoResultado = `El precio con IGV es de S/ ${total.toFixed(2)} (Precio sin IGV 🏷️ S/ ${precioSinIgv.toFixed(2)} + IGV 🧾 S/ ${igv.toFixed(2)}).`;
+    
+    resultadoDiv.textContent = textoResultado;
+    resultadoDiv.style.fontSize = '4.5rem';  // Tamaño normal para resultado
+    resultadoDiv.style.color = '#0c5460';    // Color normal para resultado
+    copiarBtn.style.display = 'inline-block';
+  }
+
+  function copiarTexto() {
+    const texto = document.getElementById('resultado').textContent;
+    navigator.clipboard.writeText(texto).then(() => {
+      alert('Texto copiado al portapapeles');
+    }).catch(() => {
+      alert('Error al copiar el texto');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+{% endblock %}

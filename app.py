@@ -100,6 +100,12 @@ def publicare_San_Valentín():
 def publicare_Navidad():
     return render_template('publicar/publicare_navidad.html')
 
+
+# Esto carga el desplegllabe de Para Proforma
+@app.route('/caligv')
+def caligv():
+    return render_template('caligv.html')
+
 # Función para obtener el siguiente número de proforma
 def obtener_siguiente_numero_proforma():
     ruta_contador = "contador.txt"
