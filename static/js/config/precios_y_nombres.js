@@ -33,6 +33,7 @@ const preciosPorCantidad = {
     // Velas (producto base)
     velas: {
         vela: { 0: 5.00, 25: 4.80, 50: 4.20, 100: 4.00 },
+        vela_con_organza: { 0: 5.20, 25: 4.90, 50: 4.30, 100: 4.10 },
         vela_con_yute: { 0: 5.50, 25: 5.30, 50: 4.70, 100: 4.50 },
         vela_con_yute_y_soguilla_verde: { 0: 6.00, 25: 5.80, 50: 5.20, 100: 5.00 },
         vela_mas_empaque: { 0: 5.70, 25: 5.50, 50: 4.90, 100: 4.70 },
@@ -79,6 +80,7 @@ const nombresVisibles = {
     },
     velas: {
         vela: "velas",
+        vela_con_organza: "velas con organza",
         vela_con_yute: "velas con yute",
         vela_con_yute_y_soguilla_verde: "velas con yute y soguilla verde",
         vela_mas_empaque: "velas más empaque",
@@ -100,7 +102,7 @@ const textosResumen = {
     macetas: `
 Incluye:
 🪴 Una maceta con decoración especial
-🌱 Una suculenta natural
+🌱 Suculenta natural enraizada
 🪨 Piedritas decorativas
 💌 Una tarjeta personalizada con el nombre y mensaje que prefieras`,
 
@@ -108,7 +110,7 @@ Incluye:
     macetas_redondas: `
 Incluye:
 🪴 Maceta redonda decorada
-🌱 Suculenta natural
+🌱 Suculenta natural enraizada
 🪨 Piedritas decorativas
 💌 Tarjetita personalizada con el nombre y mensaje que desees`,
 
@@ -116,7 +118,7 @@ Incluye:
     macetas_loza: `
 Incluye:
 🏺 Maceta de loza decorada
-🌱 Planta natural
+🌱 Suculenta natural enraizada
 🪨 Piedritas decorativas
 💌 Tarjetita personalizada con el nombre y mensaje que desees`,
 
@@ -124,7 +126,7 @@ Incluye:
     macetas_arcilla: `
 Incluye:
 🏺 Maceta de arcilla
-🌱 Planta natural
+🌱 Suculenta natural enraizada
 🪨 Piedritas decorativas
 💌 Tarjetita personalizada con el nombre y mensaje que desees`,
 
@@ -132,6 +134,7 @@ Incluye:
     velas: `
 Incluye:
 🕯️ Vela decorada
+🪻 Flores decorativas
 🌿 Detalles personalizados
 💌 Tarjetita personalizada con el nombre y mensaje que desees`,
 
@@ -139,6 +142,7 @@ Incluye:
     velas_tubo: `
 Incluye:
 🕯️ Vela tubo decorada
+🪻 Flores decorativas
 🌿 Detalles personalizados
 💌 Tarjetita personalizada con el nombre y mensaje que desees`,
 };
