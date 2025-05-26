@@ -32,8 +32,9 @@ const preciosPorCantidad = {
     },
     // Velas (producto base)
     velas: {
-        vela: { 0: 5.00, 25: 4.80, 50: 4.20, 100: 4.00 },
+        vela: { 0: 5.00, 25: 4.70, 50: 4.10, 100: 3.90 },
         vela_con_organza: { 0: 5.20, 25: 4.90, 50: 4.30, 100: 4.10 },
+        vela_con_sticker: { 0: 5.10, 25: 4.80, 50: 4.20, 100: 4.00 },
         vela_con_yute: { 0: 5.50, 25: 5.30, 50: 4.70, 100: 4.50 },
         vela_con_yute_y_soguilla_verde: { 0: 6.00, 25: 5.80, 50: 5.20, 100: 5.00 },
         vela_mas_empaque: { 0: 5.70, 25: 5.50, 50: 4.90, 100: 4.70 },
@@ -81,6 +82,7 @@ const nombresVisibles = {
     velas: {
         vela: "velas",
         vela_con_organza: "velas con organza",
+        vela_con_sticker: "velas con sticker",
         vela_con_yute: "velas con yute",
         vela_con_yute_y_soguilla_verde: "velas con yute y soguilla verde",
         vela_mas_empaque: "velas más empaque",

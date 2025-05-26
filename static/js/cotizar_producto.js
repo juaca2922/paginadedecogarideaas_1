@@ -42,7 +42,7 @@ function actualizar_resumen(mensajePrecio, productoSeleccionado, cantidad) {
 
     // Resumen del producto
     const resumen = textosResumen[productoSeleccionado] || "";
-    const mensajeFinal = "\n\nLa personalización se coordina después de seprar el pedido.";
+    const mensajeFinal = "\n\nLa personalización se coordina después de separar el pedido.";
 
     const resumenCompleto = mensajePrecio + "\n\n" + resumen.trim() + mensajeFinal;
     resumenElemento.innerText = resumenCompleto;
