@@ -4,7 +4,8 @@ const preciosPorCantidad = {
     macetas: {
         macetas: { 0: 6.00, 25: 4.80, 50: 4.20, 100: 4.00 },
         macetas_con_yute: { 0: 6.00 + 0.50, 25: 4.80 + 0.50, 50: 4.20 + 0.50, 100: 4.00 + 0.50 },
-        macetas_con_caja: { 0: 6.00 + 1.50, 25: 4.80 + 1.50, 50: 4.20 + 1.50, 100: 4.00 + 1.50 },
+        macetas_con_caja_personalizada: { 0: 6.00 + 1.50, 25: 4.80 + 1.50, 50: 4.20 + 1.50, 100: 4.00 + 1.50 },
+        macetas_con_caja: { 0: 5.50 + 1.00, 25: 4.80 + 1.00, 50: 4.20 + 1.00, 100: 4.00 + 1.00 },
         macetas_con_sticker: {  0: 6.00 + 0.40, 25: 4.80 + 0.40, 50: 4.20 + 0.40, 100: 4.00 + 0.40 }
     },
     // Macetas Redondas 
@@ -56,6 +57,7 @@ const nombresVisibles = {
     macetas: {
         macetas: "macetitas",
         macetas_con_yute: "macetitas con yute",
+        macetas_con_caja_personalizada: "macetitas en caja con tarjeta personalizada",
         macetas_con_caja: "macetitas con caja",
         macetas_con_sticker: "macetitas con sticker"
     },
